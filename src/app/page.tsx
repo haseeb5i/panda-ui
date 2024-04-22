@@ -4,28 +4,49 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { css } from "@/styles/css";
+import { flex } from "@/styles/patterns";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background font-sans antialiased">
-      <DemoBox>
+    <main className="">
+      <DemoBox title="Accordion">
         <AccordionDemo />
       </DemoBox>
     </main>
   );
 }
 
-function DemoBox({ children }: { children: React.ReactNode }) {
+function DemoBox({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
-    <div className="preview flex min-h-[350px] w-full justify-center p-10 items-center">
-      {children}
+    <div className={css({ maxW: "900px", mx: "auto" })}>
+      <h3 className={css({ fontSize: "2xl", fontWeight: "600", pl: "10" })}>
+        {title}
+      </h3>
+      <div
+        className={flex({
+          justify: "center",
+          align: "center",
+          width: "full",
+          padding: 10,
+          pt: 3,
+        })}
+      >
+        {children}
+      </div>
     </div>
   );
 }
 
 function AccordionDemo() {
   return (
-    <Accordion type="single" collapsible className="w-full">
+    <Accordion css={{ w: "full" }} type="single" collapsible>
       <AccordionItem value="item-1">
         <AccordionTrigger>Is it accessible?</AccordionTrigger>
         <AccordionContent>

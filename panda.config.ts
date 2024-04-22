@@ -1,13 +1,18 @@
 import { defineConfig } from "@pandacss/dev";
 
+import { appPreset } from "@/theme/preset";
+
 export default defineConfig({
+  presets: ["@pandacss/dev/presets", appPreset],
+
   // Whether to use css reset
   preflight: true,
+
   jsxFramework: "react",
   jsxStyleProps: "minimal",
 
   // Where to look for your css declarations
-  include: ["./src/**/*.{js,jsx,ts,tsx}", "./pages/**/*.{js,jsx,ts,tsx}"],
+  include: ["./src/app/**/*.{ts,tsx}", "./src/components/**/*.{ts,tsx}"],
 
   // Files to exclude
   exclude: [],
@@ -16,6 +21,7 @@ export default defineConfig({
   theme: {
     extend: {},
   },
+
 
   // The output directory for your css system
   outdir: "styled-system",

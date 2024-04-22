@@ -1,58 +1,83 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as AccordionPrimitive from "@radix-ui/react-accordion"
-import { ChevronDown } from "lucide-react"
+import * as React from "react";
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
+import { ChevronDown } from "lucide-react";
 
-import { cn } from "@/lib/utils"
+import { css, cx } from "@/styles/css";
+import { styled, HTMLStyledProps } from "@/styles/jsx";
 
-const Accordion = AccordionPrimitive.Root
+const Accordion = styled(AccordionPrimitive.Root);
 
-const AccordionItem = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
->(({ className, ...props }, ref) => (
-  <AccordionPrimitive.Item
-    ref={ref}
-    className={cn("border-b", className)}
-    {...props}
-  />
-))
-AccordionItem.displayName = "AccordionItem"
+const AccordionItem = styled(AccordionPrimitive.Item, {
+  base: {
+    borderBottomWidth: "1px",
+  },
+});
+
+const triggerStyles = css.raw({
+  display: "flex",
+  flex: 1,
+  alignItems: "center",
+  justifyContent: "space-between",
+  paddingY: "1rem",
+  fontWeight: "500",
+  transition: "all 200ms",
+  _hover: {
+    textDecoration: "underline",
+  },
+  "&[data-state=open] > svg": {
+    transform: "rotate(180deg)",
+  },
+});
 
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Header className="flex">
+  HTMLStyledProps<typeof AccordionPrimitive.Trigger>
+>(({ children, css: cssProp, ...props }, ref) => (
+  <AccordionPrimitive.Header className={css({ display: "flex" })}>
     <AccordionPrimitive.Trigger
       ref={ref}
-      className={cn(
-        "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
-        className
-      )}
+      className={cx(css(triggerStyles, cssProp), props.className)}
       {...props}
     >
       {children}
-      <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
+      <ChevronDown
+        className={css({
+          transition: "transform 200ms",
+          size: "1rem",
+          flexShrink: 0,
+        })}
+      />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
-))
-AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName
+));
+AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
+
+const contentStyles = css({
+  overflow: "hidden",
+  fontSize: "sm",
+  lineHeight: "snug",
+  transition: "all 200ms",
+  _open: {
+    animation: "accordionDown 0.2s ease-out",
+  },
+  _closed: {
+    animation: "accordionUp 0.2s ease-out",
+  },
+});
 
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Content
-    ref={ref}
-    className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
-    {...props}
-  >
-    <div className={cn("pb-4 pt-0", className)}>{children}</div>
+  HTMLStyledProps<typeof AccordionPrimitive.Content>
+>(({ css: cssProp, children, ...props }, ref) => (
+  <AccordionPrimitive.Content ref={ref} className={contentStyles} {...props}>
+    <div className={cx(css({ pb: "1rem" }, cssProp), props.className)}>
+      {children}
+    </div>
   </AccordionPrimitive.Content>
-))
+));
 
-AccordionContent.displayName = AccordionPrimitive.Content.displayName
+AccordionContent.displayName = AccordionPrimitive.Content.displayName;
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };

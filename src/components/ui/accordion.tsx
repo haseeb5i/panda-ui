@@ -38,8 +38,8 @@ const AccordionTrigger = React.forwardRef<
   <AccordionPrimitive.Header className={css({ display: "flex" })}>
     <AccordionPrimitive.Trigger
       ref={ref}
-      className={cx(css(triggerStyles, cssProp), props.className)}
       {...props}
+      className={cx(css(triggerStyles, cssProp), props.className)}
     >
       {children}
       <ChevronDown
@@ -70,14 +70,13 @@ const contentStyles = css({
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
   HTMLStyledProps<typeof AccordionPrimitive.Content>
->(({ css: cssProp, children, ...props }, ref) => (
+>(({ css: cssProp, className, children, ...props }, ref) => (
   <AccordionPrimitive.Content ref={ref} className={contentStyles} {...props}>
-    <div className={cx(css({ pb: "1rem" }, cssProp), props.className)}>
+    <div className={cx(css({ pb: "1rem" }, cssProp), className)}>
       {children}
     </div>
   </AccordionPrimitive.Content>
 ));
-
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;
 
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };

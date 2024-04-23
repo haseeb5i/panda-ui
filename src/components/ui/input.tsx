@@ -1,25 +1,35 @@
-import * as React from "react"
+import { styled } from "@/styles/jsx";
 
-import { cn } from "@/lib/utils"
+const Input = styled("input", {
+  base: {
+    display: "flex",
+    height: "10",
+    width: "full",
+    rounded: "md",
+    borderWidth: "1px",
+    paddingX: 3,
+    paddingY: 2,
+    textStyle: "sm",
+    bgColor: "background",
+    _placeholder: {
+      color: { base: "zinc.500", _dark: "zinc.400" },
+    },
+    _file: {
+      fontWeight: "medium",
+      px: "1.5",
+      py: "1px",
+      marginEnd: "1",
+    },
+    _focusVisible: {
+      outline: "2px solid transparent",
+      outlineOffset: "2px",
+      boxShadow: "outline",
+    },
+    _disabled: {
+      pointerEvents: "none",
+      opacity: 0.5,
+    },
+  },
+});
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
-
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
-    return (
-      <input
-        type={type}
-        className={cn(
-          "flex h-10 w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-950 dark:placeholder:text-zinc-400 dark:focus-visible:ring-zinc-300",
-          className
-        )}
-        ref={ref}
-        {...props}
-      />
-    )
-  }
-)
-Input.displayName = "Input"
-
-export { Input }
+export { Input };

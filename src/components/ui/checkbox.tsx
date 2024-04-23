@@ -1,30 +1,49 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
-import { Check } from "lucide-react"
+import * as React from "react";
+import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
+import { Check } from "lucide-react";
 
-import { cn } from "@/lib/utils"
+import { css, cx } from "@/styles/css";
+import { center } from "@/styles/patterns";
+import { HTMLStyledProps } from "@/styles/types";
+
+const rootStyles = css.raw({
+  size: "1rem",
+  flexShrink: 0,
+  rounded: "sm",
+  borderWidth: "1px",
+  borderColor: { base: "zinc.900", _dark: "zinc.50" },
+  cursor: "pointer",
+  _focusVisible: {
+    outline: "2px solid transparent",
+    outlineOffset: "2px",
+    boxShadow: "outline",
+  },
+  _disabled: {
+    cursor: "not-allowed",
+    opacity: "0.5",
+  },
+  _checked: {
+    bgColor: { base: "zinc.900", _dark: "zinc.50" },
+    color: { base: "zinc.50", _dark: "zinc.900" },
+  },
+});
 
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
->(({ className, ...props }, ref) => (
+  HTMLStyledProps<typeof CheckboxPrimitive.Root>
+>(({ css: cssProp, ...props }, ref) => (
   <CheckboxPrimitive.Root
     ref={ref}
-    className={cn(
-      "peer h-4 w-4 shrink-0 rounded-sm border border-zinc-200 border-zinc-900 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-zinc-900 data-[state=checked]:text-zinc-50 dark:border-zinc-800 dark:border-zinc-50 dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300 dark:data-[state=checked]:bg-zinc-50 dark:data-[state=checked]:text-zinc-900",
-      className
-    )}
     {...props}
+    className={cx("peer", css(rootStyles, cssProp), props.className)}
   >
-    <CheckboxPrimitive.Indicator
-      className={cn("flex items-center justify-center text-current")}
-    >
-      <Check className="h-4 w-4" />
+    <CheckboxPrimitive.Indicator className={center()}>
+      <Check className={css({ size: "1rem" })} />
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>
-))
-Checkbox.displayName = CheckboxPrimitive.Root.displayName
+));
+Checkbox.displayName = CheckboxPrimitive.Root.displayName;
 
-export { Checkbox }
+export { Checkbox };

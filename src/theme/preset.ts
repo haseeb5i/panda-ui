@@ -1,19 +1,23 @@
 import { definePreset } from "@pandacss/dev";
 import { globalCss } from "./globalCss";
 
-import { tokens } from "./tokens";
+import { semanticTokens, tokens } from "./tokens";
 import { keyframes } from "./keyframes";
+import { textStyles } from "@/typography";
 
 export const appPreset = definePreset({
   globalCss,
   globalVars: {
-    "--global-color-border": "rgb(228, 228, 231)",
+    '--global-font-body': "var(--font-inter)",
+    "--global-color-border": "var(--colors-border)",
   },
 
   theme: {
     extend: {
       tokens,
+      semanticTokens,
       keyframes,
+      textStyles,
     },
   },
 

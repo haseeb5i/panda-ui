@@ -1,29 +1,69 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as SwitchPrimitives from "@radix-ui/react-switch"
+import * as React from "react";
+import * as SwitchPrimitives from "@radix-ui/react-switch";
 
-import { cn } from "@/lib/utils"
+import { css, cx } from "@/styles/css";
+import { HTMLStyledProps } from "@/styles/types";
+
+const rootStyles = css.raw({
+  display: "inline-flex",
+  height: "6",
+  width: "11",
+  flexShrink: 0,
+  cursor: "pointer",
+  alignItems: "center",
+  rounded: "full",
+  borderWidth: "2px",
+  borderColor: "transparent",
+  bgColor: { base: "zinc.200", _dark: "zinc.800" },
+
+  // TODO: simplify this
+  transitionProperty: "color, background-color, fill",
+  transitionDuration: ".15s",
+  transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
+
+  _focusVisible: {
+    outline: "2px solid transparent",
+    outlineOffset: "2px",
+    boxShadow: "outline",
+  },
+  _disabled: {
+    pointerEvents: "none",
+    opacity: "0.5",
+  },
+  _checked: {
+    bgColor: { base: "zinc.900", _dark: "zinc.50" },
+  },
+});
+
+const thumbStyles = css({
+  pointerEvents: "none",
+  display: "block",
+  size: "5",
+  rounded: "full",
+  bgColor: "background",
+  shadow: "lg",
+  ring: 0,
+  translate: "auto",
+  transition: "translate .15s cubic-bezier(0.4, 0, 0.2, 1)",
+  _checked: {
+    translateX: "5",
+  },
+});
 
 const Switch = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitives.Root>,
-  React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root>
->(({ className, ...props }, ref) => (
+  HTMLStyledProps<typeof SwitchPrimitives.Root>
+>(({ className, css: cssProp, ...props }, ref) => (
   <SwitchPrimitives.Root
-    className={cn(
-      "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-zinc-900 data-[state=unchecked]:bg-zinc-200 dark:focus-visible:ring-zinc-300 dark:focus-visible:ring-offset-zinc-950 dark:data-[state=checked]:bg-zinc-50 dark:data-[state=unchecked]:bg-zinc-800",
-      className
-    )}
+    className={cx("peer", css(rootStyles, cssProp), className)}
     {...props}
     ref={ref}
   >
-    <SwitchPrimitives.Thumb
-      className={cn(
-        "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0 dark:bg-zinc-950"
-      )}
-    />
+    <SwitchPrimitives.Thumb className={thumbStyles} />
   </SwitchPrimitives.Root>
-))
-Switch.displayName = SwitchPrimitives.Root.displayName
+));
+Switch.displayName = SwitchPrimitives.Root.displayName;
 
-export { Switch }
+export { Switch };

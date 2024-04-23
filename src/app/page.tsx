@@ -23,6 +23,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Badge } from "@/components/ui/badge";
 
 export default function Home() {
   return (
@@ -30,8 +36,13 @@ export default function Home() {
       <DemoBox title="Accordion">
         <AccordionDemo />
       </DemoBox>
+
       <DemoBox title="Alert">
         <AlertDemo />
+      </DemoBox>
+
+      <DemoBox title="Badge">
+        <BadgeDemo />
       </DemoBox>
 
       <DemoBox title="Buttons">
@@ -48,6 +59,10 @@ export default function Home() {
 
       <DemoBox title="Input">
         <InputDemo />
+      </DemoBox>
+
+      <DemoBox title="Popover">
+        <PopoverDemo />
       </DemoBox>
 
       <DemoBox title="Switch">
@@ -123,6 +138,17 @@ function AlertDemo() {
   );
 }
 
+function BadgeDemo() {
+  return (
+    <div className={flex({ align: "center", gap: "4" })}>
+      <Badge>Primary</Badge>
+      <Badge variant="secondary">Secondary</Badge>
+      <Badge variant="destructive">Destructive</Badge>
+      <Badge variant="outline">Outline</Badge>
+    </div>
+  );
+}
+
 function ButtonDemo() {
   return (
     <div className={flex({ align: "center", gap: "4" })}>
@@ -181,7 +207,7 @@ function DialogDemo() {
             <Input
               id="name"
               defaultValue="Pedro Duarte"
-              css={{ gridColumn: '3' }}
+              css={{ gridColumn: "3" }}
             />
           </div>
           <div className={grid({ columns: 4, gap: "4", alignItems: "center" })}>
@@ -191,7 +217,7 @@ function DialogDemo() {
             <Input
               id="username"
               defaultValue="@peduarte"
-              css={{ gridColumn: '3' }}
+              css={{ gridColumn: "3" }}
             />
           </div>
         </div>
@@ -210,5 +236,54 @@ function InputDemo() {
       <Input disabled type="email" placeholder="Email" />
       <Input id="picture" type="file" />
     </div>
+  );
+}
+
+const PopoverInput = ({
+  id,
+  label,
+  defaultValue,
+}: {
+  id: string;
+  label: string;
+  defaultValue: string;
+}) => (
+  <div className={grid({ columns: 3, gap: "4", alignItems: "center" })}>
+    <Label htmlFor={id}>{label}</Label>
+    <Input
+      id={id}
+      defaultValue={defaultValue}
+      className={css({ h: "8", gridColumn: "2" })}
+    />
+  </div>
+);
+
+function PopoverDemo() {
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline">Open popover</Button>
+      </PopoverTrigger>
+      <PopoverContent css={{ w: "80" }}>
+        <div className={css({ spaceY: "2", mb: "4" })}>
+          <h4 className={css({ fontWeight: "medium", lineHeight: "none" })}>
+            Dimensions
+          </h4>
+          <p className={css({ textStyle: "sm", color: "zinc.500" })}>
+            Set the dimensions for the layer.
+          </p>
+        </div>
+        <div className={grid({ gap: "2" })}>
+          <PopoverInput id="width" label="Width" defaultValue="100%" />
+          <PopoverInput id="maxWidth" label="Max. width" defaultValue="300px" />
+          <PopoverInput id="height" label="Height" defaultValue="25px" />
+          <PopoverInput
+            id="maxHeight"
+            label="Max. height"
+            defaultValue="none"
+          />
+        </div>
+      </PopoverContent>
+    </Popover>
   );
 }

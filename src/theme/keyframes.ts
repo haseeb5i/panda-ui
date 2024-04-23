@@ -10,6 +10,14 @@ export const keyframes = defineKeyframes({
     "0%": { transform: "translateY(-2px)" },
     "100%": { transform: "translateY(0)" },
   },
+  slideRight: {
+    "0%": { transform: "translateX(-2px)" },
+    "100%": { transform: "translateX(0)" },
+  },
+  slideLeft: {
+    "0%": { transform: "translateX(2px)" },
+    "100%": { transform: "translateX(0)" },
+  },
   accordionUp: {
     "0%": { height: "var(--radix-accordion-content-height)" },
     "100%": { height: "0" },

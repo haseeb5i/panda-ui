@@ -1,31 +1,49 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as PopoverPrimitive from "@radix-ui/react-popover"
+import * as React from "react";
+import * as PopoverPrimitive from "@radix-ui/react-popover";
 
-import { cn } from "@/lib/utils"
+import { css, cx } from "@/styles/css";
+import { HTMLStyledProps } from "@/styles/types";
 
-const Popover = PopoverPrimitive.Root
+const Popover = PopoverPrimitive.Root;
 
-const PopoverTrigger = PopoverPrimitive.Trigger
+const PopoverTrigger = PopoverPrimitive.Trigger;
+
+const contentStyles = css.raw({
+  zIndex: 50,
+  width: 72,
+  rounded: "md",
+  borderWidth: "1px",
+  bgColor: "background",
+  padding: 4,
+  shadow: "md",
+  outline: "none",
+  willChange: "transform, opacity",
+  animationDuration: "400ms",
+  animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+  _open: {
+    "&[data-side=top]": { animationName: "slideDown, fadeIn" },
+    "&[data-side=right]": { animationName: "slideLeft, fadeIn" },
+    "&[data-side=bottom]": { animationName: "slideUp, fadeIn" },
+    "&[data-side=left]": { animationName: "slideRight, fadeIn" },
+  },
+});
 
 const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
->(({ className, align = "center", sideOffset = 4, ...props }, ref) => (
+  HTMLStyledProps<typeof PopoverPrimitive.Content>
+>(({ css: cssProp, align = "center", sideOffset = 4, ...props }, ref) => (
   <PopoverPrimitive.Portal>
     <PopoverPrimitive.Content
       ref={ref}
       align={align}
       sideOffset={sideOffset}
-      className={cn(
-        "z-50 w-72 rounded-md border border-zinc-200 bg-white p-4 text-zinc-950 shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50",
-        className
-      )}
+      className={cx(css(contentStyles, cssProp), props.className)}
       {...props}
     />
   </PopoverPrimitive.Portal>
-))
-PopoverContent.displayName = PopoverPrimitive.Content.displayName
+));
+PopoverContent.displayName = PopoverPrimitive.Content.displayName;
 
-export { Popover, PopoverTrigger, PopoverContent }
+export { Popover, PopoverTrigger, PopoverContent };

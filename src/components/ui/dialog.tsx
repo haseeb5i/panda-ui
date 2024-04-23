@@ -33,6 +33,8 @@ const contentStyles = css.raw({
   transform: "translate(-50%, -50%)",
   width: "90vw",
   maxWidth: "lg",
+  display: "grid",
+  gap: 4,
   borderWidth: "1px",
   rounded: { sm: "lg" },
   bgColor: "background",

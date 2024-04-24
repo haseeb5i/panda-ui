@@ -8,7 +8,6 @@ import { textStyles } from "@/typography";
 export const appPreset = definePreset({
   globalCss,
   globalVars: {
-    "--global-font-body": "var(--font-inter), var(--font-fallback)",
     "--global-color-border": "var(--colors-border)",
   },
 

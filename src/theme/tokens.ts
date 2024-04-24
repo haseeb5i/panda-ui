@@ -2,14 +2,11 @@ import { defineSemanticTokens, defineTokens } from "@pandacss/dev";
 
 export const tokens = defineTokens({
   fonts: {
-    sans: { value: "var(--font-inter), ui-sans-serif, system-ui, sans-serif" },
-  },
-  sizes: {},
-  shadows: {
-    outline: {
-      value: ["0 0 0 2px white", "0 0 0 4px hsl(240 5% 64.9%)"],
+    sans: {
+      value: "var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif",
     },
   },
+  sizes: {},
 });
 
 export const semanticTokens = defineSemanticTokens({
@@ -25,6 +22,11 @@ export const semanticTokens = defineSemanticTokens({
     },
     ring: {
       value: { base: "hsl(240 5% 64.9%)", _dark: "hsl(240 4.9% 83.9%)" },
+    },
+  },
+  shadows: {
+    outline: {
+      value: ["0 0 0 2px {colors.background}", "0 0 0 4px {colors.ring}"],
     },
   },
 });

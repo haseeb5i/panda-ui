@@ -66,10 +66,13 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { ThemeToggle } from "./theme-toggle";
 
 export default function Home() {
   return (
     <main className="">
+      <ThemeToggle />
+
       <DemoBox title="Accordion">
         <AccordionDemo />
       </DemoBox>

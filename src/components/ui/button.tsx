@@ -1,4 +1,4 @@
-import { cva } from "@/styles/css";
+import { RecipeVariantProps, cva } from "@/styles/css";
 import { styled } from "@/styles/jsx";
 
 const buttonVariants = cva({
@@ -93,3 +93,5 @@ const buttonVariants = cva({
 const Button = styled("button", buttonVariants);
 
 export { Button, buttonVariants };
+
+export type ButtonVariants = Exclude<RecipeVariantProps<typeof buttonVariants>, undefined>;

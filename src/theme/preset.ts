@@ -8,7 +8,7 @@ import { textStyles } from "@/typography";
 export const appPreset = definePreset({
   globalCss,
   globalVars: {
-    '--global-font-body': "var(--font-inter)",
+    "--global-font-body": "var(--font-inter), var(--font-fallback)",
     "--global-color-border": "var(--colors-border)",
   },
 
@@ -30,6 +30,15 @@ export const appPreset = definePreset({
 
   utilities: {
     extend: {
+      dflex: {
+        className: "dflex",
+        values: "alignItems",
+        transform: (value) => ({
+          display: "flex",
+          alignItems: value,
+          justifyContent: value,
+        }),
+      },
       size: {
         className: "size",
         values: "sizes",
@@ -38,6 +47,13 @@ export const appPreset = definePreset({
           height: value,
         }),
       },
+      // textGradient: (value: Stitches.PropertyValue<"backgroundImage">) => ({
+      //     backgroundImage: `linear-gradient(${value})`,
+      //     WebkitBackgroundClip: "text",
+      //     WebkitTextFillColor: "transparent",
+      //     "&::selection": {
+      //       WebkitTextFillColor: "$colors$text",
+      //     },
     },
   },
 });

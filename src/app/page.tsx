@@ -2,6 +2,7 @@ import { ChevronRight, Mail, Terminal } from "lucide-react";
 
 import { css } from "@/styles/css";
 import { flex, grid } from "@/styles/patterns";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Accordion,
   AccordionContent,
@@ -11,9 +12,15 @@ import {
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp";
 import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
 import {
   Dialog,
   DialogContent,
@@ -24,11 +31,30 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Badge } from "@/components/ui/badge";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Separator } from "@/components/ui/separator";
+import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function Home() {
   return (
@@ -39,6 +65,10 @@ export default function Home() {
 
       <DemoBox title="Alert">
         <AlertDemo />
+      </DemoBox>
+
+      <DemoBox title="Avatar">
+        <AvatarDemo />
       </DemoBox>
 
       <DemoBox title="Badge">
@@ -61,12 +91,40 @@ export default function Home() {
         <InputDemo />
       </DemoBox>
 
+      <DemoBox title="Input OTP">
+        <InputOTPDemo />
+      </DemoBox>
+
+      <DemoBox title="Pagination">
+        <PaginationDemo />
+      </DemoBox>
+
       <DemoBox title="Popover">
         <PopoverDemo />
       </DemoBox>
 
+      <DemoBox title="Radio Group">
+        <RadioGroupDemo />
+      </DemoBox>
+
+      <DemoBox title="Separator">
+        <SeparatorDemo />
+      </DemoBox>
+
+      <DemoBox title="Slider">
+        <SliderDemo />
+      </DemoBox>
+
       <DemoBox title="Switch">
         <SwitchDemo />
+      </DemoBox>
+
+      <DemoBox title="Tabs">
+        <TabsDemo />
+      </DemoBox>
+
+      <DemoBox title="Tooltip">
+        <TooltipDemo />
       </DemoBox>
     </main>
   );
@@ -123,6 +181,15 @@ function AccordionDemo() {
         </AccordionContent>
       </AccordionItem>
     </Accordion>
+  );
+}
+
+function AvatarDemo() {
+  return (
+    <Avatar>
+      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
   );
 }
 
@@ -239,6 +306,24 @@ function InputDemo() {
   );
 }
 
+function InputOTPDemo() {
+  return (
+    <InputOTP maxLength={6}>
+      <InputOTPGroup>
+        <InputOTPSlot index={0} />
+        <InputOTPSlot index={1} />
+        <InputOTPSlot index={2} />
+      </InputOTPGroup>
+      <InputOTPSeparator />
+      <InputOTPGroup>
+        <InputOTPSlot index={3} />
+        <InputOTPSlot index={4} />
+        <InputOTPSlot index={5} />
+      </InputOTPGroup>
+    </InputOTP>
+  );
+}
+
 const PopoverInput = ({
   id,
   label,
@@ -285,5 +370,125 @@ function PopoverDemo() {
         </div>
       </PopoverContent>
     </Popover>
+  );
+}
+
+function RadioGroupDemo() {
+  return (
+    <RadioGroup defaultValue="comfortable">
+      <div className={flex({ align: "center", spaceX: "2" })}>
+        <RadioGroupItem value="default" id="r1" />
+        <Label htmlFor="r1">Default</Label>
+      </div>
+      <div className={flex({ align: "center", spaceX: "2" })}>
+        <RadioGroupItem value="comfortable" id="r2" />
+        <Label htmlFor="r2">Comfortable</Label>
+      </div>
+      <div className={flex({ align: "center", spaceX: "2" })}>
+        <RadioGroupItem value="compact" id="r3" />
+        <Label htmlFor="r3">Compact</Label>
+      </div>
+    </RadioGroup>
+  );
+}
+
+function TooltipDemo() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline">Hover</Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Add to library</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+}
+
+function PaginationDemo() {
+  return (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href="#" />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#" isActive>
+            2
+          </PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">3</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href="#" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
+}
+
+function TabsDemo() {
+  return (
+    <Tabs defaultValue="account" css={{ w: "400px" }}>
+      <TabsList css={{ display: "grid", w: "full", gridTemplateColumns: "2" }}>
+        <TabsTrigger value="account">Account</TabsTrigger>
+        <TabsTrigger value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">
+        <div>tab 1</div>
+      </TabsContent>
+      <TabsContent value="password">
+        <div>tab 2</div>
+      </TabsContent>
+    </Tabs>
+  );
+}
+
+function SliderDemo() {
+  return <Slider defaultValue={[50]} max={100} step={1} css={{ w: "60%" }} />;
+}
+
+function SeparatorDemo() {
+  return (
+    <div>
+      <div className={css({ spaceY: "1" })}>
+        <h4
+          className={css({
+            textStyle: "sm",
+            fontWeight: "medium",
+            lineHeight: "none",
+          })}
+        >
+          Radix Primitives
+        </h4>
+        <p className="text-sm text-muted-foreground">
+          An open-source UI component library.
+        </p>
+      </div>
+      <Separator css={{ my: "4" }} />
+      <div
+        className={flex({
+          align: "center",
+          h: "5",
+          spaceX: "4",
+          textStyle: "sm",
+        })}
+      >
+        <div>Blog</div>
+        <Separator orientation="vertical" />
+        <div>Docs</div>
+        <Separator orientation="vertical" />
+        <div>Source</div>
+      </div>
+    </div>
   );
 }

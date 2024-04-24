@@ -23,6 +23,7 @@ const triggerStyles = css.raw({
   paddingY: "1rem",
   fontWeight: "500",
   transition: "all 200ms",
+  cursor: "pointer",
   _hover: {
     textDecoration: "underline",
   },

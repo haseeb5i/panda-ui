@@ -21,7 +21,7 @@ const DialogOverlay = styled(DialogPrimitive.Overlay, {
     inset: 0,
     bgColor: "black/80",
     _open: {
-      animationName: "fadeIn .15s cubic-bezier(0.16, 1, 0.3, 1)",
+      animation: "fadeIn .15s cubic-bezier(0.16, 1, 0.3, 1)",
     },
   },
 });
@@ -52,10 +52,9 @@ const closeBtnStyles = css({
   rounded: "sm",
   opacity: 0.7,
   transition: "opacity 200ms",
-  bgColor: { base: "zinc.100", _dark: "zinc.800" },
-  color: { base: "zinc.500", _dark: "zinc.400" },
+  cursor: "pointer",
   _hover: {
-    opacity: 100,
+    opacity: 1,
   },
   _focus: {
     outline: "2px solid transparent",
@@ -64,12 +63,6 @@ const closeBtnStyles = css({
   },
   _disabled: {
     pointerEvents: "none",
-  },
-  _open: {
-    _dark: {
-      bgColor: "zinc.800",
-      color: "zinc.400",
-    },
   },
 });
 
@@ -102,6 +95,7 @@ const DialogHeader = styled("div", {
     textAlign: { base: "center", sm: "left" },
   },
 });
+DialogHeader.displayName = "DialogHeader";
 
 const DialogFooter = styled("div", {
   base: {
@@ -114,6 +108,7 @@ const DialogFooter = styled("div", {
     },
   },
 });
+DialogFooter.displayName = "DialogFooter";
 
 const DialogTitle = styled(DialogPrimitive.Title, {
   base: {

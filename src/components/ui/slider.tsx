@@ -46,27 +46,24 @@ const thumbStyles = css({
 const Slider = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
   HTMLStyledProps<typeof SliderPrimitive.Root>
->(({ className, css: cssProp, ...props }, ref) => {
-  console.log(className, cssProp, props);
-  return (
-    <SliderPrimitive.Root
-      ref={ref}
-      className={cx(css(rootStyles, cssProp), className)}
-      {...props}
-    >
-      <SliderPrimitive.Track className={trackStyles}>
-        <SliderPrimitive.Range
-          className={css({
-            position: "absolute",
-            height: "full",
-            bgColor: { base: "zinc.900", _dark: "zinc.50" },
-          })}
-        />
-      </SliderPrimitive.Track>
-      <SliderPrimitive.Thumb className={thumbStyles} />
-    </SliderPrimitive.Root>
-  );
-});
+>(({ className, css: cssProp, ...props }, ref) => (
+  <SliderPrimitive.Root
+    ref={ref}
+    className={cx(css(rootStyles, cssProp), className)}
+    {...props}
+  >
+    <SliderPrimitive.Track className={trackStyles}>
+      <SliderPrimitive.Range
+        className={css({
+          position: "absolute",
+          height: "full",
+          bgColor: { base: "zinc.900", _dark: "zinc.50" },
+        })}
+      />
+    </SliderPrimitive.Track>
+    <SliderPrimitive.Thumb className={thumbStyles} />
+  </SliderPrimitive.Root>
+));
 Slider.displayName = SliderPrimitive.Root.displayName;
 
 export { Slider };

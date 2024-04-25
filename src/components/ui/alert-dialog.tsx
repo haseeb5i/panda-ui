@@ -62,7 +62,7 @@ const AlertDialogHeader = styled("div", {
   base: {
     display: "flex",
     flexDir: "column",
-    spaceY: 1.5,
+    spaceY: 2,
     textAlign: { base: "center", sm: "left" },
   },
 });

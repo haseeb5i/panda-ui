@@ -7,6 +7,11 @@ export const tokens = defineTokens({
     },
   },
   sizes: {},
+  animations: {
+    "caret-blink": {
+      value: "caretBlink 1s ease-out infinite",
+    },
+  },
 });
 
 export const semanticTokens = defineSemanticTokens({

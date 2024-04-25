@@ -39,6 +39,10 @@ export const keyframes = defineKeyframes({
     "0%": { opacity: 1 },
     "100%": { opacity: 0 },
   },
+  caretBlink: {
+    "0%, 70%, 100%": { opacity: 1 },
+    "20%, 50%": { opacity: 0 },
+  },
   rotateCenter: {
     "0%": { transform: "rotate(0)" },
     "100%": { transform: "rotate(360deg)" },

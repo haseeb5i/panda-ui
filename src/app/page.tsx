@@ -67,6 +67,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { ThemeToggle } from "./theme-toggle";
+import { DropdownMenuDemo } from "@/components/ui/dropdown-menu";
+import { CollapsibleDemo } from "@/components/ui/collapsible";
 
 export default function Home() {
   return (
@@ -101,8 +103,16 @@ export default function Home() {
         <CheckboxDemo />
       </DemoBox>
 
+      <DemoBox title="Collapsible">
+        <CollapsibleDemo />
+      </DemoBox>
+
       <DemoBox title="Dialog">
         <DialogDemo />
+      </DemoBox>
+
+      <DemoBox title="Dropdown Menu">
+        <DropdownMenuDemo />
       </DemoBox>
 
       <DemoBox title="Input">

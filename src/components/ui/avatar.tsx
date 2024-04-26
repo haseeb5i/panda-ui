@@ -36,3 +36,12 @@ const AvatarFallback = styled(AvatarPrimitive.Fallback, {
 });
 
 export { Avatar, AvatarImage, AvatarFallback };
+
+export function AvatarDemo() {
+  return (
+    <Avatar>
+      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
+  );
+}

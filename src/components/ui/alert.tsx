@@ -1,4 +1,6 @@
+import { css } from "@/styles/css";
 import { styled } from "@/styles/jsx";
+import { Terminal } from "lucide-react";
 
 const Alert = styled("div", {
   base: {
@@ -48,3 +50,15 @@ const AlertDescription = styled("p", {
 });
 
 export { Alert, AlertTitle, AlertDescription };
+
+export function AlertDemo() {
+  return (
+    <Alert>
+      <Terminal className={css({ size: "4" })} />
+      <AlertTitle>Heads up!</AlertTitle>
+      <AlertDescription>
+        You can add components to your app using the cli.
+      </AlertDescription>
+    </Alert>
+  );
+}

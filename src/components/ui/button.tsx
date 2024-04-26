@@ -1,5 +1,7 @@
-import { RecipeVariantProps, cva } from "@/styles/css";
+import { RecipeVariantProps, css, cva } from "@/styles/css";
 import { styled } from "@/styles/jsx";
+import { flex } from "@/styles/patterns";
+import { ChevronRight, Mail } from "lucide-react";
 
 const buttonVariants = cva({
   base: {
@@ -95,3 +97,22 @@ const Button = styled("button", buttonVariants);
 export { Button, buttonVariants };
 
 export type ButtonVariants = Exclude<RecipeVariantProps<typeof buttonVariants>, undefined>;
+
+export function ButtonDemo() {
+  return (
+    <div className={flex({ align: "center", gap: "4" })}>
+      <Button>
+        <Mail className={css({ size: "4", mr: "2" })} />
+        Primary
+      </Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+
+      <Button variant="outline" size="icon">
+        <ChevronRight className={css({ size: "4" })} />
+      </Button>
+    </div>
+  );
+}

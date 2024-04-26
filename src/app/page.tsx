@@ -1,29 +1,7 @@
-import { ChevronRight, Mail, Terminal } from "lucide-react";
-
 import { css } from "@/styles/css";
 import { flex, grid } from "@/styles/patterns";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { Button, ButtonDemo } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   InputOTP,
@@ -32,29 +10,6 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { Label } from "@/components/ui/label";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
@@ -69,6 +24,16 @@ import {
 import { ThemeToggle } from "./theme-toggle";
 import { DropdownMenuDemo } from "@/components/ui/dropdown-menu";
 import { CollapsibleDemo } from "@/components/ui/collapsible";
+import { SelectDemo } from "@/components/ui/select";
+import { BreadcrumbDemo } from "@/components/ui/breadcrumb";
+import { AccordionDemo } from "@/components/ui/accordion";
+import { AlertDemo } from "@/components/ui/alert";
+import { AvatarDemo } from "@/components/ui/avatar";
+import { BadgeDemo } from "@/components/ui/badge";
+import { DialogDemo } from "@/components/ui/dialog";
+import { AlertDialogDemo } from "@/components/ui/alert-dialog";
+import { PopoverDemo } from "@/components/ui/popover";
+import { PaginationDemo } from "@/components/ui/pagination";
 
 export default function Home() {
   return (
@@ -93,6 +58,10 @@ export default function Home() {
 
       <DemoBox title="Badge">
         <BadgeDemo />
+      </DemoBox>
+
+      <DemoBox title="Breadcrumb">
+        <BreadcrumbDemo />
       </DemoBox>
 
       <DemoBox title="Buttons">
@@ -133,6 +102,10 @@ export default function Home() {
 
       <DemoBox title="Radio Group">
         <RadioGroupDemo />
+      </DemoBox>
+
+      <DemoBox title="Select">
+        <SelectDemo />
       </DemoBox>
 
       <DemoBox title="Separator">
@@ -185,84 +158,6 @@ function DemoBox({
   );
 }
 
-function AccordionDemo() {
-  return (
-    <Accordion css={{ w: "full" }} type="single" collapsible>
-      <AccordionItem value="item-1">
-        <AccordionTrigger>Is it accessible?</AccordionTrigger>
-        <AccordionContent>
-          Yes. It adheres to the WAI-ARIA design pattern.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="item-2">
-        <AccordionTrigger>Is it styled?</AccordionTrigger>
-        <AccordionContent>
-          Yes. It comes with default styles that matches the other
-          components&apos; aesthetic.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="item-3">
-        <AccordionTrigger>Is it animated?</AccordionTrigger>
-        <AccordionContent>
-          Yes. It&apos;s animated by default, but you can disable it if you
-          prefer.
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
-  );
-}
-
-function AvatarDemo() {
-  return (
-    <Avatar>
-      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-      <AvatarFallback>CN</AvatarFallback>
-    </Avatar>
-  );
-}
-
-function AlertDemo() {
-  return (
-    <Alert>
-      <Terminal className={css({ size: "4" })} />
-      <AlertTitle>Heads up!</AlertTitle>
-      <AlertDescription>
-        You can add components to your app using the cli.
-      </AlertDescription>
-    </Alert>
-  );
-}
-
-function BadgeDemo() {
-  return (
-    <div className={flex({ align: "center", gap: "4" })}>
-      <Badge>Primary</Badge>
-      <Badge variant="secondary">Secondary</Badge>
-      <Badge variant="destructive">Destructive</Badge>
-      <Badge variant="outline">Outline</Badge>
-    </div>
-  );
-}
-
-function ButtonDemo() {
-  return (
-    <div className={flex({ align: "center", gap: "4" })}>
-      <Button>
-        <Mail className={css({ size: "4", mr: "2" })} />
-        Primary
-      </Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="link">Link</Button>
-
-      <Button variant="outline" size="icon">
-        <ChevronRight className={css({ size: "4" })} />
-      </Button>
-    </div>
-  );
-}
-
 function CheckboxDemo() {
   return (
     <div className={flex({ align: "center", spaceX: "2" })}>
@@ -278,49 +173,6 @@ function SwitchDemo() {
       <Switch id="airplane-mode" />
       <Label htmlFor="airplane-mode">Airplane Mode</Label>
     </div>
-  );
-}
-
-function DialogDemo() {
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
-      </DialogTrigger>
-      <DialogContent css={{ maxW: { sm: "425px" } }}>
-        <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
-          </DialogDescription>
-        </DialogHeader>
-        <div className={css({ spaceY: "4", py: "4" })}>
-          <div className={grid({ columns: 4, gap: "4", alignItems: "center" })}>
-            <Label htmlFor="name" css={{ textAlign: "right" }}>
-              Name
-            </Label>
-            <Input
-              id="name"
-              defaultValue="Pedro Duarte"
-              css={{ gridColumn: "3" }}
-            />
-          </div>
-          <div className={grid({ columns: 4, gap: "4", alignItems: "center" })}>
-            <Label htmlFor="username" css={{ textAlign: "right" }}>
-              Username
-            </Label>
-            <Input
-              id="username"
-              defaultValue="@peduarte"
-              css={{ gridColumn: "3" }}
-            />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
   );
 }
 
@@ -349,55 +201,6 @@ function InputOTPDemo() {
         <InputOTPSlot index={5} />
       </InputOTPGroup>
     </InputOTP>
-  );
-}
-
-const PopoverInput = ({
-  id,
-  label,
-  defaultValue,
-}: {
-  id: string;
-  label: string;
-  defaultValue: string;
-}) => (
-  <div className={grid({ columns: 3, gap: "4", alignItems: "center" })}>
-    <Label htmlFor={id}>{label}</Label>
-    <Input
-      id={id}
-      defaultValue={defaultValue}
-      className={css({ h: "8", gridColumn: "2" })}
-    />
-  </div>
-);
-
-function PopoverDemo() {
-  return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button variant="outline">Open popover</Button>
-      </PopoverTrigger>
-      <PopoverContent css={{ w: "80" }}>
-        <div className={css({ spaceY: "2", mb: "4" })}>
-          <h4 className={css({ fontWeight: "medium", lineHeight: "none" })}>
-            Dimensions
-          </h4>
-          <p className={css({ textStyle: "sm", color: "zinc.500" })}>
-            Set the dimensions for the layer.
-          </p>
-        </div>
-        <div className={grid({ gap: "2" })}>
-          <PopoverInput id="width" label="Width" defaultValue="100%" />
-          <PopoverInput id="maxWidth" label="Max. width" defaultValue="300px" />
-          <PopoverInput id="height" label="Height" defaultValue="25px" />
-          <PopoverInput
-            id="maxHeight"
-            label="Max. height"
-            defaultValue="none"
-          />
-        </div>
-      </PopoverContent>
-    </Popover>
   );
 }
 
@@ -432,35 +235,6 @@ function TooltipDemo() {
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
-  );
-}
-
-function PaginationDemo() {
-  return (
-    <Pagination>
-      <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious href="#" />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">1</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#" isActive>
-            2
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">3</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href="#" />
-        </PaginationItem>
-      </PaginationContent>
-    </Pagination>
   );
 }
 
@@ -518,28 +292,5 @@ function SeparatorDemo() {
         <div>Source</div>
       </div>
     </div>
-  );
-}
-
-function AlertDialogDemo() {
-  return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button variant="outline">Show Dialog</Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
   );
 }

@@ -1,5 +1,6 @@
 import { cva } from "@/styles/css";
 import { styled } from "@/styles/jsx";
+import { flex } from "@/styles/patterns";
 
 const badgeVariants = cva({
   base: {
@@ -48,3 +49,14 @@ const badgeVariants = cva({
 const Badge = styled("div", badgeVariants);
 
 export { Badge, badgeVariants };
+
+export function BadgeDemo() {
+  return (
+    <div className={flex({ align: "center", gap: "4" })}>
+      <Badge>Primary</Badge>
+      <Badge variant="secondary">Secondary</Badge>
+      <Badge variant="destructive">Destructive</Badge>
+      <Badge variant="outline">Outline</Badge>
+    </div>
+  );
+}

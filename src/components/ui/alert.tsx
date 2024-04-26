@@ -20,8 +20,8 @@ const Alert = styled("div", {
   variants: {
     variant: {
       default: {
-        bgColor: { base: "white", _dark: "zinc.950" },
-        color: { base: "zinc.950", _dark: "zinc.50" },
+        bgColor: "background",
+        color: "foreground",
       },
       destructive: {
         color: "red.500",

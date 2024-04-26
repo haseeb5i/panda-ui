@@ -14,7 +14,8 @@ const buttonVariants = cva({
     fontWeight: "medium",
     cursor: "pointer",
 
-    transitionProperty: "colors",
+    transitionProperty: "color,background-color,fill",
+    transition: "0.15s cubic-bezier(.4,0,.2,1)",
 
     _focusVisible: {
       outline: "2px solid transparent",
@@ -25,39 +26,38 @@ const buttonVariants = cva({
       pointerEvents: "none",
       opacity: "0.5",
     },
-    "--btn-color": { base: "colors.zinc.900", _dark: "colors.zinc.50" },
   },
   variants: {
     variant: {
       default: {
-        bgColor: "var(--btn-color)",
-        color: { base: "zinc.50", _dark: "zinc.900" },
+        bgColor: "primary",
+        color: "primaryForeground",
         _hover: {
-          bgColor: { base: "zinc.900/90", _dark: "zinc.50/90" },
+          bgColor: "primary/90",
         },
       },
       secondary: {
-        bgColor: { base: "zinc.100", _dark: "zinc.800" },
-        color: "var(--btn-color)",
+        bgColor: "accent",
+        color: "accentForeground",
         _hover: {
-          bgColor: { base: "zinc.100/80", _dark: "zinc.800/80" },
+          bgColor: "accent/80",
         },
       },
       outline: {
         borderWidth: "1px",
         _hover: {
-          bgColor: { base: "zinc.100", _dark: "zinc.800" },
-          color: "var(--btn-color)",
+          bgColor: "accent",
+          color: "accentForeground",
         },
       },
       ghost: {
         _hover: {
-          bgColor: { base: "zinc.100", _dark: "zinc.800" },
-          color: "var(--btn-color)",
+          bgColor: "accent",
+          color: "accentForeground",
         },
       },
       link: {
-        color: "var(--btn-color)",
+        color: "accentForeground",
         textUnderlineOffset: "4px",
         _hover: {
           textDecoration: "underline",
@@ -96,7 +96,10 @@ const Button = styled("button", buttonVariants);
 
 export { Button, buttonVariants };
 
-export type ButtonVariants = Exclude<RecipeVariantProps<typeof buttonVariants>, undefined>;
+export type ButtonVariants = Exclude<
+  RecipeVariantProps<typeof buttonVariants>,
+  undefined
+>;
 
 export function ButtonDemo() {
   return (

@@ -4,9 +4,8 @@ import * as React from "react";
 import { OTPInput, OTPInputContext } from "input-otp";
 import { Dot } from "lucide-react";
 
-import { cn } from "@/lib/utils";
-import { styled } from "@/styles/jsx";
 import { css, cx } from "@/styles/css";
+import { styled } from "@/styles/jsx";
 
 const containerStyles = css({
   display: "flex",

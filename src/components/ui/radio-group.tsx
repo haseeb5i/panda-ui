@@ -4,7 +4,7 @@ import * as React from "react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { Circle } from "lucide-react";
 
-import {cx,  css } from "@/styles/css";
+import { cx, css } from "@/styles/css";
 import { HTMLStyledProps, styled } from "@/styles/jsx";
 
 const RadioGroup = styled(RadioGroupPrimitive.Root, {
@@ -20,10 +20,9 @@ const itemsStyles = css.raw({
   width: "4",
   rounded: "full",
   borderWidth: "1px",
-  "--radio-color": { base: "colors.zinc.900", _dark: "colors.zinc.50" },
-  borderColor: "var(--radio-color)",
+  borderColor: "primary",
   cursor: "pointer",
-  color: "var(--radio-color)",
+  color: "primary",
   _focusVisible: {
     outline: "2px solid transparent",
     outlineOffset: "2px",

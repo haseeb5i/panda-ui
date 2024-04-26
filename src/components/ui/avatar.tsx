@@ -31,7 +31,7 @@ const AvatarFallback = styled(AvatarPrimitive.Fallback, {
     height: "full",
     width: "full",
     rounded: "full",
-    bgColor: { base: "zinc.100", _dark: "zinc.800" },
+    bgColor: 'accent',
   },
 });
 

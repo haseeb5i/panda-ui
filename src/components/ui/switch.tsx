@@ -16,12 +16,11 @@ const rootStyles = css.raw({
   rounded: "full",
   borderWidth: "2px",
   borderColor: "transparent",
-  bgColor: { base: "zinc.200", _dark: "zinc.800" },
+  bgColor: "border",
 
   // TODO: simplify this
-  transitionProperty: "color, background-color, fill",
-  transitionDuration: ".15s",
-  transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
+  transition: ".15s cubic-bezier(0.4, 0, 0.2, 1)",
+  transitionProperty: "color,background-color,fill",
 
   _focusVisible: {
     outline: "2px solid transparent",
@@ -33,7 +32,7 @@ const rootStyles = css.raw({
     opacity: "0.5",
   },
   _checked: {
-    bgColor: { base: "zinc.900", _dark: "zinc.50" },
+    bgColor: "primary",
   },
 });
 

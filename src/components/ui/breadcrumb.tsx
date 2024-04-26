@@ -29,7 +29,7 @@ const BreadcrumbList = styled("ol", {
     gap: { base: "1.5", sm: "2.5" },
     wordBreak: "break-word",
     textStyle: "sm",
-    color: { base: "zinc.500", _dark: "zinc.400" },
+    color: 'mutedForeground',
   },
 });
 BreadcrumbList.displayName = "BreadcrumbList";

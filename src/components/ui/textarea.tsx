@@ -13,7 +13,7 @@ const Textarea = styled("textarea", {
     textStyle: "sm",
     ringOffset: "white",
     _placeholder: {
-      color: { base: "zinc.500", _dark: "zinc.400" },
+      color: 'mutedForeground',
     },
     _focus: {
       outline: "2px solid transparent",

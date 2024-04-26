@@ -22,6 +22,21 @@ export const semanticTokens = defineSemanticTokens({
     foreground: {
       value: { base: "{colors.zinc.950}", _dark: "{colors.zinc.50}" },
     },
+    primary: {
+      value: { base: "{colors.zinc.900}", _dark: "{colors.zinc.50}" },
+    },
+    primaryForeground: {
+      value: { base: "{colors.zinc.50}", _dark: "{colors.zinc.900}" },
+    },
+    accent: {
+      value: { base: "{colors.zinc.100}", _dark: "{colors.zinc.800}" },
+    },
+    accentForeground: {
+      value: { base: "{colors.zinc.900}", _dark: "{colors.zinc.50}" },
+    },
+    mutedForeground: {
+      value: { base: "{colors.zinc.500}", _dark: "{colors.zinc.400}" },
+    },
     border: {
       value: { base: "{colors.zinc.200}", _dark: "{colors.zinc.800}" },
     },

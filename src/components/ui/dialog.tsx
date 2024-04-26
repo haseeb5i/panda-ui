@@ -126,7 +126,7 @@ const DialogTitle = styled(DialogPrimitive.Title, {
 const DialogDescription = styled(DialogPrimitive.Description, {
   base: {
     textStyle: "sm",
-    color: { base: "zinc.500", _dark: "zinc.400" },
+    color: "mutedForeground",
   },
 });
 

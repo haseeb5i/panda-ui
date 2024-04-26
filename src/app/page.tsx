@@ -35,6 +35,7 @@ import { AlertDialogDemo } from "@/components/ui/alert-dialog";
 import { PopoverDemo } from "@/components/ui/popover";
 import { PaginationDemo } from "@/components/ui/pagination";
 import { ScrollAreaDemo } from "@/components/ui/scroll-area";
+import { CalendarDemo } from "@/components/ui/calendar";
 
 export default function Home() {
   return (
@@ -67,6 +68,10 @@ export default function Home() {
 
       <DemoBox title="Buttons">
         <ButtonDemo />
+      </DemoBox>
+
+      <DemoBox title="Calendar">
+        <CalendarDemo />
       </DemoBox>
 
       <DemoBox title="Checkbox">
@@ -104,7 +109,7 @@ export default function Home() {
       <DemoBox title="Radio Group">
         <RadioGroupDemo />
       </DemoBox>
-      
+
       <DemoBox title="Scroll Area">
         <ScrollAreaDemo />
       </DemoBox>

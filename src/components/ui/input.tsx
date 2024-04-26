@@ -12,7 +12,7 @@ const Input = styled("input", {
     textStyle: "sm",
     bgColor: "background",
     _placeholder: {
-      color: { base: "zinc.500", _dark: "zinc.400" },
+      color: 'mutedForeground',
     },
     _file: {
       fontWeight: "medium",

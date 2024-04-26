@@ -23,13 +23,13 @@ const badgeVariants = cva({
     variant: {
       default: {
         borderColor: "transparent",
-        bgColor: { base: "zinc.900", _dark: "zinc.50" },
-        color: { base: "zinc.50", _dark: "zinc.900" },
+        bgColor: "primary",
+        color: "primaryForeground",
       },
       secondary: {
         borderColor: "transparent",
-        bgColor: { base: "zinc.100", _dark: "zinc.800" },
-        color: { base: "zinc.900", _dark: "zinc.50" },
+        bgColor: "accent",
+        color: "accentForeground",
       },
       destructive: {
         borderColor: "transparent",

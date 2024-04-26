@@ -13,7 +13,7 @@ const rootStyles = css.raw({
   flexShrink: 0,
   rounded: "sm",
   borderWidth: "1px",
-  borderColor: { base: "zinc.900", _dark: "zinc.50" },
+  borderColor: "primary",
   cursor: "pointer",
   _focusVisible: {
     outline: "2px solid transparent",
@@ -25,8 +25,8 @@ const rootStyles = css.raw({
     opacity: "0.5",
   },
   _checked: {
-    bgColor: { base: "zinc.900", _dark: "zinc.50" },
-    color: { base: "zinc.50", _dark: "zinc.900" },
+    bgColor: "primary",
+    color: "primaryForeground",
   },
 });
 

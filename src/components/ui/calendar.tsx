@@ -4,10 +4,9 @@ import * as React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DayPicker } from "react-day-picker";
 
-import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { HTMLStyledProps } from "@/styles/types";
 import { css, cx } from "@/styles/css";
+import { HTMLStyledProps } from "@/styles/types";
 
 export type CalendarProps = HTMLStyledProps<typeof DayPicker>;
 
@@ -24,8 +23,8 @@ function Calendar({
       className={cx(css({ p: "3" }, cssProp), className)}
       classNames={{ ...classes, ...classNames }}
       components={{
-        IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
-        IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
+        IconLeft: () => <ChevronLeft className={css({ size: "4" })} />,
+        IconRight: () => <ChevronRight className={css({ size: "4" })} />,
       }}
       {...props}
     />
@@ -50,24 +49,27 @@ const classes = {
   caption: css({ dflex: "center", paddingTop: "1", position: "relative" }),
   caption_label: css({ textStyle: "sm", fontWeight: "medium" }),
   nav: css({ spaceX: 1, display: "flex", alignItems: "center" }),
-  nav_button: cn(
-    buttonVariants({ variant: "outline" }),
-    "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100"
-  ),
+  nav_button: css(buttonVariants.raw({ variant: "outline" }), {
+    size: "7",
+    bgColor: "transparent",
+    p: "0",
+    opacity: "0.5",
+    _hover: { opacity: "100" },
+  }),
   nav_button_previous: css({ position: "absolute", left: "1" }),
   nav_button_next: css({ position: "absolute", right: "1" }),
   table: css({ width: "full", borderCollapse: "collapse", spaceY: 1 }),
   head_row: css({ display: "flex" }),
   head_cell: css({
-    color: { base: "zinc.500", _dark: "zinc.400" },
+    color: "mutedForeground",
     rounded: "md",
     width: "9",
     fontWeight: "normal",
     fontSize: "0.8rem",
+    padding: "1px",
   }),
   row: css({ display: "flex", width: "full", mt: 2 }),
   cell: css({
-    //  "first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20 dark:[&:has([aria-selected].day-outside)]:bg-zinc-800/50 dark:[&:has([aria-selected])]:bg-zinc-800"
     size: "9",
     textAlign: "center",
     textStyle: "sm",
@@ -77,24 +79,81 @@ const classes = {
       roundedRight: "md",
     },
     "&:has([aria-selected].day-outside)": {
-      bgColor: "zinc.100/50",
+      bgColor: "accent/50",
     },
     "&:has([aria-selected])": {
-      bgColor: "zinc.100",
+      bgColor: "accent",
+    },
+    "&:has([aria-selected]):first-child": {
+      roundedLeft: "md",
+    },
+    "&:has([aria-selected]):last-child": {
+      roundedRight: "md",
+    },
+    _focusWithin: {
+      position: "relative",
+      zIndex: 20,
     },
   }),
-  day: cn(
-    buttonVariants({ variant: "ghost" }),
-    "h-9 w-9 p-0 font-normal aria-selected:opacity-100"
-  ),
+  day: css(buttonVariants.raw({ variant: "ghost" }), {
+    padding: "0",
+    size: "9",
+    fontWeight: "normal",
+    "&[aria-selected]": {
+      opacity: 1,
+    },
+  }),
   day_range_end: "day-range-end",
-  day_selected:
-    "bg-zinc-900 text-zinc-50 hover:bg-zinc-900 hover:text-zinc-50 focus:bg-zinc-900 focus:text-zinc-50 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50 dark:hover:text-zinc-900 dark:focus:bg-zinc-50 dark:focus:text-zinc-900",
-  day_today: "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50",
-  day_outside:
-    "day-outside text-zinc-500 opacity-50 aria-selected:bg-zinc-100/50 aria-selected:text-zinc-500 aria-selected:opacity-30 dark:text-zinc-400 dark:aria-selected:bg-zinc-800/50 dark:aria-selected:text-zinc-400",
-  day_disabled: "text-zinc-500 opacity-50 dark:text-zinc-400",
-  day_range_middle:
-    "aria-selected:bg-zinc-100 aria-selected:text-zinc-900 dark:aria-selected:bg-zinc-800 dark:aria-selected:text-zinc-50",
-  day_hidden: "invisible",
+  day_selected: css({
+    bgColor: "primary!",
+    color: "primaryForeground!",
+    _hover: {
+      bgColor: "primary",
+      color: "primaryForeground",
+    },
+    _focus: {
+      bgColor: "primary",
+      color: "primaryForeground",
+    },
+  }),
+  day_today: css({
+    bgColor: "accent",
+    color: "accentForeground",
+  }),
+  day_outside: cx(
+    css({
+      color: "mutedForeground!",
+      opacity: 0.5,
+      "&[aria-selected]": {
+        bgColor: "accent/50!",
+        opacity: 0.3,
+      },
+    }),
+    "day-outside"
+  ),
+  day_disabled: css({
+    color: "mutedForeground",
+    opacity: 0.5,
+  }),
+  day_range_middle: css({
+    "&[aria-selected]": {
+      bgColor: "accent!",
+      color: "accentForeground!",
+    },
+  }),
+  day_hidden: css({ visibility: "hidden" }),
 };
+
+export function CalendarDemo() {
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
+
+  return (
+    <Calendar
+      css={{ rounded: "md", borderWidth: "1px" }}
+      mode="single"
+      // captionLayout="dropdown"
+      selected={date}
+      onSelect={setDate}
+    />
+  );
+}

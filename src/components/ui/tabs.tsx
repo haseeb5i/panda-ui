@@ -15,8 +15,8 @@ const TabsList = styled(TabsPrimitive.List, {
     height: "10",
     padding: "1",
     rounded: "md",
-    bgColor: { base: "zinc.100", _dark: "zinc.800" },
-    color: { base: "zinc.500", _dark: "zinc.400" },
+    bgColor: 'accent',
+    color: 'mutedForeground',
   },
 });
 

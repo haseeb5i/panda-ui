@@ -29,7 +29,7 @@ const triggerStyles = css.raw({
     lineClamp: 1,
   },
   _placeholder: {
-    color: { base: "zinc.500", _dark: "zinc.400" },
+    color: "mutedForeground",
   },
   _focus: {
     outline: "2px solid transparent",
@@ -169,8 +169,8 @@ const itemStyles = css({
   textStyle: "sm",
   outline: "none",
   _focus: {
-    bgColor: { base: "zinc.100", _dark: "zinc.800" },
-    color: { base: "zinc.900", _dark: "zinc.50" },
+    bgColor: "accent",
+    color: "accentForeground",
   },
   _disabled: {
     pointerEvents: "none",
@@ -210,7 +210,7 @@ const SelectSeparator = styled(SelectPrimitive.Separator, {
     marginX: "-1",
     marginY: "1",
     height: "1px",
-    bgColor: { base: "zinc.100", _dark: "zinc.800" },
+    bgColor: "accent",
   },
 });
 

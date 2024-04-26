@@ -22,7 +22,7 @@ const trackStyles = css({
   flexGrow: 1,
   overflow: "hidden",
   rounded: "full",
-  bgColor: { base: "zinc.100", _dark: "zinc.800" },
+  bgColor: "accent",
 });
 
 const thumbStyles = css({
@@ -30,7 +30,7 @@ const thumbStyles = css({
   rounded: "full",
   size: "5",
   borderWidth: "2px",
-  borderColor: { base: "zinc.900", _dark: "zinc.50" },
+  borderColor: "primary",
   bgColor: "background",
   _focusVisible: {
     outline: "2px solid transparent",
@@ -57,7 +57,7 @@ const Slider = React.forwardRef<
         className={css({
           position: "absolute",
           height: "full",
-          bgColor: { base: "zinc.900", _dark: "zinc.50" },
+          bgColor: "primary",
         })}
       />
     </SliderPrimitive.Track>

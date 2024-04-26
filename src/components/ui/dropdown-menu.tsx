@@ -72,8 +72,8 @@ const baseItemStyles = {
   textStyle: "sm",
   outline: "none",
   _focus: {
-    color: { base: "zinc.900", _dark: "zinc.50" },
-    bgColor: { base: "zinc.100", _dark: "zinc.800" },
+    bgColor: "accent",
+    color: "accentForeground",
   },
 };
 
@@ -179,13 +179,13 @@ const DropdownMenuSeparator = styled(DropdownMenuPrimitive.Separator, {
     marginX: "-1",
     marginY: "1",
     height: "1px",
-    bgColor: { base: "zinc.100", _dark: "zinc.800" },
+    bgColor: "accent",
   },
 });
 
 const subTriggerStyles = css(itemStyles, {
   _open: {
-    bgColor: { base: "zinc.100", _dark: "zinc.800" },
+    bgColor: "accent",
   },
 });
 

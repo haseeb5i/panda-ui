@@ -1,27 +1,53 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area"
+import * as React from "react";
+import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 
-import { cn } from "@/lib/utils"
+import { cx, css } from "@/styles/css";
+import { Separator } from "./separator";
+import { HTMLStyledProps } from "@/styles/types";
 
 const ScrollArea = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>
->(({ className, children, ...props }, ref) => (
+  HTMLStyledProps<typeof ScrollAreaPrimitive.Root>
+>(({ className, css: cssProp, children, ...props }, ref) => (
   <ScrollAreaPrimitive.Root
     ref={ref}
-    className={cn("relative overflow-hidden", className)}
+    className={cx(
+      css({ pos: "relative", overflow: "hidden" }, cssProp),
+      className
+    )}
     {...props}
   >
-    <ScrollAreaPrimitive.Viewport className="h-full w-full rounded-[inherit]">
+    <ScrollAreaPrimitive.Viewport
+      className={css({ size: "full", rounded: "inherit" })}
+    >
       {children}
     </ScrollAreaPrimitive.Viewport>
     <ScrollBar />
     <ScrollAreaPrimitive.Corner />
   </ScrollAreaPrimitive.Root>
-))
-ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName
+));
+ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
+
+const scrollbarStyles = css({
+  display: "flex",
+  touchAction: "none",
+  userSelect: "none",
+  transition: "border-color 0.15s",
+  "&[data-orientation=vertical]": {
+    height: "full",
+    width: "2.5",
+    borderLeft: "1px solid transparent",
+    padding: "1px",
+  },
+  "&[data-orientation=horizontal]": {
+    flexDir: "column",
+    height: "2.5",
+    borderTop: "1px solid transparent",
+    padding: "1px",
+  },
+});
 
 const ScrollBar = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>,
@@ -30,19 +56,50 @@ const ScrollBar = React.forwardRef<
   <ScrollAreaPrimitive.ScrollAreaScrollbar
     ref={ref}
     orientation={orientation}
-    className={cn(
-      "flex touch-none select-none transition-colors",
-      orientation === "vertical" &&
-        "h-full w-2.5 border-l border-l-transparent p-[1px]",
-      orientation === "horizontal" &&
-        "h-2.5 flex-col border-t border-t-transparent p-[1px]",
-      className
-    )}
+    className={cx(scrollbarStyles, className)}
     {...props}
   >
-    <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 rounded-full bg-zinc-200 dark:bg-zinc-800" />
+    <ScrollAreaPrimitive.ScrollAreaThumb
+      className={css({
+        position: "relative",
+        flex: 1,
+        rounded: "full",
+        bgColor: "border",
+      })}
+    />
   </ScrollAreaPrimitive.ScrollAreaScrollbar>
-))
-ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName
+));
+ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
 
-export { ScrollArea, ScrollBar }
+export { ScrollArea, ScrollBar };
+
+const tags = Array.from({ length: 50 }).map(
+  (_, i, a) => `v1.2.0-beta.${a.length - i}`
+);
+
+export function ScrollAreaDemo() {
+  return (
+    <ScrollArea css={{ h: "72", w: "48", rounded: "md", borderWidth: "1px" }}>
+      <div className={css({ p: "4" })}>
+        <h4
+          className={css({
+            mb: 4,
+            textStyle: "sm",
+            fontWeight: "medium",
+            lineHeight: "none",
+          })}
+        >
+          Tags
+        </h4>
+        {tags.map((tag) => (
+          <>
+            <div key={tag} className={css({ textStyle: "sm" })}>
+              {tag}
+            </div>
+            <Separator css={{ my: 2 }} />
+          </>
+        ))}
+      </div>
+    </ScrollArea>
+  );
+}

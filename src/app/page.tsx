@@ -1,26 +1,16 @@
 import { css } from "@/styles/css";
-import { flex, grid } from "@/styles/patterns";
+import { flex } from "@/styles/patterns";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Button, ButtonDemo } from "@/components/ui/button";
+import { ButtonDemo } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
+import { InputOTPDemo } from "@/components/ui/input-otp";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Separator } from "@/components/ui/separator";
+import { RadioGroupDemo } from "@/components/ui/radio-group";
+import { SeparatorDemo } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { TooltipDemo } from "@/components/ui/tooltip";
 import { ThemeToggle } from "./theme-toggle";
 import { DropdownMenuDemo } from "@/components/ui/dropdown-menu";
 import { CollapsibleDemo } from "@/components/ui/collapsible";
@@ -36,6 +26,9 @@ import { PopoverDemo } from "@/components/ui/popover";
 import { PaginationDemo } from "@/components/ui/pagination";
 import { ScrollAreaDemo } from "@/components/ui/scroll-area";
 import { CalendarDemo } from "@/components/ui/calendar";
+import { CardDemo } from "@/components/ui/card";
+import { ProgressDemo } from "@/components/ui/progress";
+import { SkeletonDemo } from "@/components/ui/skeleton";
 
 export default function Home() {
   return (
@@ -74,6 +67,10 @@ export default function Home() {
         <CalendarDemo />
       </DemoBox>
 
+      <DemoBox title="Card">
+        <CardDemo />
+      </DemoBox>
+
       <DemoBox title="Checkbox">
         <CheckboxDemo />
       </DemoBox>
@@ -106,6 +103,10 @@ export default function Home() {
         <PopoverDemo />
       </DemoBox>
 
+      <DemoBox title="Progress">
+        <ProgressDemo />
+      </DemoBox>
+
       <DemoBox title="Radio Group">
         <RadioGroupDemo />
       </DemoBox>
@@ -126,6 +127,10 @@ export default function Home() {
         <SliderDemo />
       </DemoBox>
 
+      <DemoBox title="Skeleton">
+        <SkeletonDemo />
+      </DemoBox>
+
       <DemoBox title="Switch">
         <SwitchDemo />
       </DemoBox>
@@ -141,7 +146,7 @@ export default function Home() {
   );
 }
 
-// card, progress, sheet, skeleton, table, form?,
+// sheet, table, form?,
 
 function DemoBox({
   title,
@@ -198,58 +203,6 @@ function InputDemo() {
   );
 }
 
-function InputOTPDemo() {
-  return (
-    <InputOTP maxLength={6}>
-      <InputOTPGroup>
-        <InputOTPSlot index={0} />
-        <InputOTPSlot index={1} />
-        <InputOTPSlot index={2} />
-      </InputOTPGroup>
-      <InputOTPSeparator />
-      <InputOTPGroup>
-        <InputOTPSlot index={3} />
-        <InputOTPSlot index={4} />
-        <InputOTPSlot index={5} />
-      </InputOTPGroup>
-    </InputOTP>
-  );
-}
-
-function RadioGroupDemo() {
-  return (
-    <RadioGroup defaultValue="comfortable">
-      <div className={flex({ align: "center", spaceX: "2" })}>
-        <RadioGroupItem value="default" id="r1" />
-        <Label htmlFor="r1">Default</Label>
-      </div>
-      <div className={flex({ align: "center", spaceX: "2" })}>
-        <RadioGroupItem value="comfortable" id="r2" />
-        <Label htmlFor="r2">Comfortable</Label>
-      </div>
-      <div className={flex({ align: "center", spaceX: "2" })}>
-        <RadioGroupItem value="compact" id="r3" />
-        <Label htmlFor="r3">Compact</Label>
-      </div>
-    </RadioGroup>
-  );
-}
-
-function TooltipDemo() {
-  return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button variant="outline">Hover</Button>
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>Add to library</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  );
-}
-
 function TabsDemo() {
   return (
     <Tabs defaultValue="account" css={{ w: "400px" }}>
@@ -269,40 +222,4 @@ function TabsDemo() {
 
 function SliderDemo() {
   return <Slider defaultValue={[50]} max={100} step={1} css={{ w: "60%" }} />;
-}
-
-function SeparatorDemo() {
-  return (
-    <div>
-      <div className={css({ spaceY: "1" })}>
-        <h4
-          className={css({
-            textStyle: "sm",
-            fontWeight: "medium",
-            lineHeight: "none",
-          })}
-        >
-          Radix Primitives
-        </h4>
-        <p className="text-sm text-muted-foreground">
-          An open-source UI component library.
-        </p>
-      </div>
-      <Separator css={{ my: "4" }} />
-      <div
-        className={flex({
-          align: "center",
-          h: "5",
-          spaceX: "4",
-          textStyle: "sm",
-        })}
-      >
-        <div>Blog</div>
-        <Separator orientation="vertical" />
-        <div>Docs</div>
-        <Separator orientation="vertical" />
-        <div>Source</div>
-      </div>
-    </div>
-  );
 }

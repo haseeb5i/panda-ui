@@ -6,6 +6,8 @@ import { Circle } from "lucide-react";
 
 import { cx, css } from "@/styles/css";
 import { HTMLStyledProps, styled } from "@/styles/jsx";
+import { flex } from "@/styles/patterns";
+import { Label } from "./label";
 
 const RadioGroup = styled(RadioGroupPrimitive.Root, {
   base: {
@@ -53,3 +55,22 @@ const RadioGroupItem = React.forwardRef<
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
 
 export { RadioGroup, RadioGroupItem };
+
+export function RadioGroupDemo() {
+  return (
+    <RadioGroup defaultValue="comfortable">
+      <div className={flex({ align: "center", spaceX: "2" })}>
+        <RadioGroupItem value="default" id="r1" />
+        <Label htmlFor="r1">Default</Label>
+      </div>
+      <div className={flex({ align: "center", spaceX: "2" })}>
+        <RadioGroupItem value="comfortable" id="r2" />
+        <Label htmlFor="r2">Comfortable</Label>
+      </div>
+      <div className={flex({ align: "center", spaceX: "2" })}>
+        <RadioGroupItem value="compact" id="r3" />
+        <Label htmlFor="r3">Compact</Label>
+      </div>
+    </RadioGroup>
+  );
+}

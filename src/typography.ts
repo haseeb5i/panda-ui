@@ -19,4 +19,10 @@ export const textStyles = defineTextStyles({
       lineHeight: "1.75rem",
     },
   },
+  "2xl": {
+    value: {
+      fontSize: "1.5rem",
+      lineHeight: "2rem",
+    },
+  },
 });

@@ -1,15 +1,24 @@
-import { cn } from "@/lib/utils"
+import { css } from "@/styles/css";
+import { styled } from "@/styles/jsx";
 
-function Skeleton({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
+const Skeleton = styled("div", {
+  base: {
+    rounded: "md",
+    bgColor: "accent",
+    animation: "pulse",
+  },
+});
+
+export { Skeleton };
+
+export function SkeletonDemo() {
   return (
-    <div
-      className={cn("animate-pulse rounded-md bg-zinc-100 dark:bg-zinc-800", className)}
-      {...props}
-    />
-  )
+    <div className={css({ display: "flex", alignItems: "center", gap: "4" })}>
+      <Skeleton css={{ size: "12", rounded: "full" }} />
+      <div className={css({ spaceY: "2" })}>
+        <Skeleton css={{ h: "4", w: "250px" }} />
+        <Skeleton css={{ h: "4", w: "200px" }} />
+      </div>
+    </div>
+  );
 }
-
-export { Skeleton }

@@ -1,79 +1,95 @@
-import * as React from "react"
+import { css } from "@/styles/css";
+import { styled } from "@/styles/jsx";
+import { Label } from "./label";
+import { Input } from "./input";
+import { Button } from "./button";
 
-import { cn } from "@/lib/utils"
+const Card = styled("div", {
+  base: {
+    rounded: "lg",
+    borderWidth: "1px",
+    bgColor: "background",
+    color: "foreground",
+    shadow: "sm",
+  },
+});
+Card.displayName = "Card";
 
-const Card = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "rounded-lg border border-zinc-200 bg-white text-zinc-950 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50",
-      className
-    )}
-    {...props}
-  />
-))
-Card.displayName = "Card"
+const CardHeader = styled("div", {
+  base: {
+    display: "flex",
+    flexDir: "column",
+    spaceY: "1.5",
+    padding: "6",
+  },
+});
+CardHeader.displayName = "CardHeader";
 
-const CardHeader = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex flex-col space-y-1.5 p-6", className)}
-    {...props}
-  />
-))
-CardHeader.displayName = "CardHeader"
+const CardTitle = styled("h3", {
+  base: {
+    fontSize: "2xl",
+    fontWeight: "semibold",
+    lineHeight: "none",
+    letterSpacing: "tight",
+  },
+});
+CardTitle.displayName = "CardTitle";
 
-const CardTitle = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h3
-    ref={ref}
-    className={cn(
-      "text-2xl font-semibold leading-none tracking-tight",
-      className
-    )}
-    {...props}
-  />
-))
-CardTitle.displayName = "CardTitle"
+const CardDescription = styled("p", {
+  base: {
+    textStyle: "sm",
+    color: "mutedForeground",
+  },
+});
+CardDescription.displayName = "CardDescription";
 
-const CardDescription = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => (
-  <p
-    ref={ref}
-    className={cn("text-sm text-zinc-500 dark:text-zinc-400", className)}
-    {...props}
-  />
-))
-CardDescription.displayName = "CardDescription"
+const CardContent = styled("div", {
+  base: {
+    padding: "6",
+    paddingTop: "0",
+  },
+});
+CardContent.displayName = "CardContent";
 
-const CardContent = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
-))
-CardContent.displayName = "CardContent"
+const CardFooter = styled("div", {
+  base: {
+    display: "flex",
+    alignItems: "center",
+    padding: "6",
+    paddingTop: "0",
+  },
+});
+CardFooter.displayName = "CardFooter";
 
-const CardFooter = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex items-center p-6 pt-0", className)}
-    {...props}
-  />
-))
-CardFooter.displayName = "CardFooter"
+export {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardDescription,
+  CardContent,
+};
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+export const CardDemo = () => (
+  <Card css={{w: '400px'}}>
+    <CardHeader>
+      <CardTitle>Account</CardTitle>
+      <CardDescription>
+        Make changes to your account here. Click save when you&apos;re done.
+      </CardDescription>
+    </CardHeader>
+    <CardContent css={{ spaceY: "2" }}>
+      <div className={css({ spaceY: "1" })}>
+        <Label htmlFor="name">Name</Label>
+        <Input id="name" defaultValue="Pedro Duarte" />
+      </div>
+      <div className={css({ spaceY: "1" })}>
+        <Label htmlFor="username">Username</Label>
+        <Input id="username" defaultValue="@peduarte" />
+      </div>
+    </CardContent>
+    <CardFooter>
+      <Button>Save changes</Button>
+    </CardFooter>
+  </Card>
+);

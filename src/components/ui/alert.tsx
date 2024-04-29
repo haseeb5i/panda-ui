@@ -16,8 +16,6 @@ const Alert = styled("div", {
     },
     "&>svg~*": { paddingLeft: "7" },
     "&>svg+div": { translateY: "-3px" }, // missting translate: 'auto'
-    animationDuration: '.2s',
-    animation: 'spin'
   },
   variants: {
     variant: {

@@ -192,7 +192,7 @@ function DemoBox({
   );
 }
 
-export function ButtonDemo() {
+ function ButtonDemo() {
   return (
     <div className={flex({ align: "center", gap: "4" })}>
       <Button>

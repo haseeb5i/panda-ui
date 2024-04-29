@@ -8,8 +8,7 @@ const Avatar = styled(AvatarPrimitive.Root, {
   base: {
     position: "relative",
     display: "flex",
-    height: "10",
-    width: "10",
+    size: "10",
     overflow: "hidden",
     rounded: "full",
   },
@@ -18,20 +17,16 @@ const Avatar = styled(AvatarPrimitive.Root, {
 const AvatarImage = styled(AvatarPrimitive.Image, {
   base: {
     aspectRatio: "square",
-    height: "full",
-    width: "full",
+    size: "full",
   },
 });
 
 const AvatarFallback = styled(AvatarPrimitive.Fallback, {
   base: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "full",
-    width: "full",
+    dflex: 'center',
+    size: "full",
     rounded: "full",
-    bgColor: 'accent',
+    bgColor: "accent",
   },
 });
 
@@ -45,3 +40,4 @@ export function AvatarDemo() {
     </Avatar>
   );
 }
+

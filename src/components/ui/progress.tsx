@@ -19,7 +19,7 @@ const indicatorStyles = css({
   size: "full",
   flex: 1,
   bgColor: "primary",
-  transition: "transform 0.15s cubic-bezier(.4,0,.2,1)",
+  transition: "transform",
 });
 
 const Progress = React.forwardRef<

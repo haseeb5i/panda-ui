@@ -23,9 +23,8 @@ const SheetOverlay = styled(SheetPrimitive.Overlay, {
     position: "fixed",
     inset: 0,
     bgColor: "black/80",
-    _open: {
-      animation: "fadeIn .15s cubic-bezier(0.16, 1, 0.3, 1)",
-    },
+    _open: { animation: "enter", fadeIn: 0 },
+    _closed: { animation: "exit", fadeOut: 0 },
   },
 });
 
@@ -50,13 +49,15 @@ const sheetVariants = cva({
         insetX: 0,
         top: 0,
         borderBottomWidth: "1px",
-        translateY: "-100%", // initial
+        _open: { slideInY: "-100%" },
+        _closed: { slideOutY: "-100%" },
       },
       bottom: {
         insetX: 0,
         bottom: 0,
         borderTopWidth: "1px",
-        translateY: "100%",
+        slideInY: "100%",
+        slideOutY: "100%",
       },
       left: {
         insetY: 0,
@@ -64,7 +65,8 @@ const sheetVariants = cva({
         height: "full",
         width: { base: "3/4", sm: "sm" },
         borderRightWidth: "1px",
-        translateX: "-100%",
+        slideInX: "-100%",
+        slideOutX: "-100%",
       },
       right: {
         insetY: 0,
@@ -72,7 +74,8 @@ const sheetVariants = cva({
         height: "full",
         width: { base: "3/4", sm: "sm" },
         borderLeftWidth: "1px",
-        translateX: "100%",
+        slideInX: "100%",
+        slideOutX: "100%",
       },
     },
   },
@@ -87,7 +90,7 @@ const closeStyles = css({
   top: "4",
   rounded: "sm",
   opacity: 0.7,
-  transition: "opacity 0.15s",
+  transition: "opacity",
   cursor: "pointer",
   _hover: {
     opacity: 1,

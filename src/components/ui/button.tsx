@@ -11,10 +11,7 @@ const buttonVariants = cva({
     textStyle: "sm",
     fontWeight: "medium",
     cursor: "pointer",
-
-    transitionProperty: "color,background-color,fill",
-    transition: "0.15s cubic-bezier(.4,0,.2,1)",
-
+    transition: "colors",
     _focusVisible: {
       outline: "2px solid transparent",
       outlineOffset: "2px",

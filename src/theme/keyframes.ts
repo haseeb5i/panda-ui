@@ -10,42 +10,21 @@ export const keyframes = defineKeyframes({
     "0%": { height: "0" },
     "100%": { height: "var(--radix-accordion-content-height)" },
   },
-  dialogContentShow: {
-    "0%": { opacity: 0, transform: "translate(-50%, -48%) scale(.96)" },
-    "100%": { opacity: 1, transform: "translate(-50%, -50%) scale(1)" },
-  },
-  slideUp: {
-    "0%": { transform: "translateY(2px)" },
-    "100%": { transform: "translateY(0)" },
-  },
-  slideDown: {
-    "0%": { transform: "translateY(-2px)" },
-    "100%": { transform: "translateY(0)" },
-  },
-  slideRight: {
-    "0%": { transform: "translateX(-2px)" },
-    "100%": { transform: "translateX(0)" },
-  },
-  slideLeft: {
-    "0%": { transform: "translateX(2px)" },
-    "100%": { transform: "translateX(0)" },
-  },
-  // TODO: improve this
+  // generic
   enter: {
     "0%": {
-      opacity: "var(--opacity,1)",
-      translate: "var(--translate-x) var(--translate-y)",
-      scale: "var(--scale,1) var(--scale,1)",
+      opacity: "var(--enter-opacity,1)",
+      translate: "var(--enter-translate-x,0) var(--enter-translate-y,0)",
+      scale: "var(--enter-scale,1) var(--enter-scale,1)",
     },
   },
   exit: {
     "100%": {
-      opacity: "var(--opacity,1)",
-      translate: "var(--translate-x) var(--translate-y)",
-      scale: "var(--scale,1) var(--scale,1)",
+      opacity: "var(--exit-opacity,1)",
+      translate: "var(--exit-translate-x,0) var(--exit-translate-y,0)",
+      scale: "var(--exit-scale,1) var(--exit-scale,1)",
     },
   },
-  // generic
   fadeIn: {
     "0%": { opacity: 0 },
     "100%": { opacity: 1 },

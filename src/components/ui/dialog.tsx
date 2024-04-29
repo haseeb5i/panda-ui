@@ -24,9 +24,8 @@ const DialogOverlay = styled(DialogPrimitive.Overlay, {
     position: "fixed",
     inset: 0,
     bgColor: "black/80",
-    _open: {
-      animation: "fadeIn .15s cubic-bezier(0.16, 1, 0.3, 1)",
-    },
+    _open: { animation: "enter", fadeIn: 0 },
+    _closed: { animation: "exit", fadeOut: 0 },
   },
 });
 
@@ -34,7 +33,6 @@ const contentStyles = css.raw({
   position: "fixed",
   top: "50%",
   left: "50%",
-  transform: "translate(-50%, -50%)",
   width: "90vw",
   maxWidth: "lg",
   display: "grid",
@@ -44,8 +42,23 @@ const contentStyles = css.raw({
   bgColor: "background",
   padding: 6,
   shadow: "lg",
+  translateX: "-50%",
+  translateY: "-50%",
+  translate: "auto",
+  animationDuration: ".2s!",
   _open: {
-    animation: "dialogContentShow 0.15s cubic-bezier(0.16, 1, 0.3, 1)",
+    animation: "enter",
+    fadeIn: 0,
+    zoomIn: 0.95,
+    slideInX: "-50%",
+    slideInY: "-48%",
+  },
+  _closed: {
+    animation: "exit",
+    fadeOut: 0,
+    zoomOut: 0.95,
+    slideOutX: "-50%",
+    slideOutY: "-48%",
   },
 });
 
@@ -55,7 +68,7 @@ const closeBtnStyles = css({
   top: 4,
   rounded: "sm",
   opacity: 0.7,
-  transition: "opacity 200ms",
+  transition: "opacity",
   cursor: "pointer",
   _hover: {
     opacity: 1,

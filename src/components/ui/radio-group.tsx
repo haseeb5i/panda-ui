@@ -18,8 +18,7 @@ const RadioGroup = styled(RadioGroupPrimitive.Root, {
 
 const itemsStyles = css.raw({
   aspectRatio: "square",
-  height: "4",
-  width: "4",
+  size: '4',
   rounded: "full",
   borderWidth: "1px",
   borderColor: "primary",

@@ -105,15 +105,23 @@ const contentStyles = css({
   shadow: "md",
   translate: "auto",
   _open: {
-    // "&[data-side=top]": { animationName: "slideDown, fadeIn" },
-    // "&[data-side=right]": { animationName: "slideLeft, fadeIn" },
-    // "&[data-side=bottom]": { animationName: "slideUp, fadeIn" },
-    // "&[data-side=left]": { animationName: "slideRight, fadeIn" },
+    animation: "enter",
+    fadeIn: 0,
+    zoomIn: 0.95,
+    // "&[data-side=top]": { slideInY: "2" },
+    // "&[data-side=bottom]": { slideInY: "-2" },
+    // "&[data-side=left]": { slideInX: "2" },
+    // "&[data-side=right]": { slideInX: "-2" },
     // position = popper
-    "&[data-side=bottom]": { translateY: "1" },
-    "&[data-side=left]": { translateX: "-1" },
-    "&[data-side=right]": { translateX: "1" },
     "&[data-side=top]": { translateY: "-1" },
+    "&[data-side=bottom]": { translateY: "1" },
+    "&[data-side=right]": { translateX: "1" },
+    "&[data-side=left]": { translateX: "-1" },
+  },
+  _closed: {
+    animation: "exit",
+    fadeOut: 0,
+    zoomOut: 0.95,
   },
 });
 

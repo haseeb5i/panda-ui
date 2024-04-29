@@ -4,7 +4,6 @@ import * as React from "react";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import { X } from "lucide-react";
 
-import { cn } from "@/lib/utils";
 import { HTMLStyledProps, styled } from "@/styles/jsx";
 import { RecipeVariantProps, css, cva, cx } from "@/styles/css";
 
@@ -17,13 +16,13 @@ const ToastViewport = styled(ToastPrimitives.Viewport, {
     zIndex: 100,
     display: "flex",
     maxHeight: "100vh",
-    width: "100%",
+    width: "full",
     flexDir: "column-reverse",
-    padding: "4rem",
+    padding: "4",
     sm: {
+      top: "auto",
       bottom: 0,
       right: 0,
-      top: "auto",
       flexDir: "column",
     },
     md: {
@@ -32,11 +31,11 @@ const ToastViewport = styled(ToastPrimitives.Viewport, {
   },
 });
 
-const toastStyles = cva({
+const toastVariants = cva({
   base: {
     position: "relative",
     display: "flex",
-    width: "100%",
+    width: "full",
     alignItems: "center",
     justifyContent: "space-between",
     spaceX: 4,
@@ -46,14 +45,17 @@ const toastStyles = cva({
     padding: 6,
     paddingRight: 8,
     shadow: "lg",
+    transition: "all",
     pointerEvents: "auto",
+    translate: 'auto',
     _open: {
-      // animate: "slide-in-from-top-full",
-      // animate: "sm:slide-in-from-bottom-full",
+      animation: "enter",
+      slideInY: { base: "-100%", sm: "100%" },
     },
     _closed: {
-      // animate: "fade-out-80",
-      // animate: "slide-out-to-right-full",
+      animation: "exit",
+      fadeOut: 0.8,
+      slideOutX: "100%",
     },
     "&[data-swipe=move]": {
       translateX: "var(--radix-toast-swipe-move-x)",
@@ -63,8 +65,8 @@ const toastStyles = cva({
       translateX: "0",
     },
     "&[data-swipe=end]": {
+      animation: "exit",
       translateX: "var(--radix-toast-swipe-end-x)",
-      // animate: "out",
     },
   },
   variants: {
@@ -74,9 +76,9 @@ const toastStyles = cva({
         bgColor: "background",
       },
       destructive: {
-        bgColor: { base: "red.500", _dark: "red.900" },
-        color: "zinc.500",
-        borderColor: { base: "red.500", _dark: "red.900" },
+        bgColor: "destructive",
+        color: "zinc.50",
+        borderColor: "destructive",
       },
     },
   },
@@ -88,15 +90,16 @@ const toastStyles = cva({
 const Toast = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Root>,
   HTMLStyledProps<typeof ToastPrimitives.Root> &
-    RecipeVariantProps<typeof toastStyles>
+    RecipeVariantProps<typeof toastVariants>
 >(({ className, css: cssProp, variant, ...props }, ref) => {
   return (
     <ToastPrimitives.Root
       ref={ref}
       className={cx(
+        variant === "destructive" && "destructive",
         "group",
-        css(toastStyles.raw({ variant }), cssProp),
-        className
+        css(toastVariants.raw({ variant }), cssProp),
+        className,
       )}
       {...props}
     />
@@ -116,18 +119,10 @@ const ToastAction = styled(ToastPrimitives.Action, {
     paddingX: "3",
     textStyle: "sm",
     fontWeight: "medium",
+    transition: "colors",
+    cursor: "pointer",
     _hover: {
-      bgColor: { base: "zinc.100", _dark: "zinc.800" },
-    },
-    _groupHover: {
-      // normal group-destructive 
-      // borderColor: { base: "zinc.100/40", _dark: "zinc.800/40" },
-      // hover
-      // borderColor: { base: "red.500/30", _dark: "red.900/30" },
-      // bgColor: {base: "red.500", _dark: "red.900" },
-      // color: "zinc.50",
-      // focus
-      //    ring-red-500    ring-red-900",
+      bgColor: "accent",
     },
     _focus: {
       outline: "2px solid transparent",
@@ -138,21 +133,32 @@ const ToastAction = styled(ToastPrimitives.Action, {
       opacity: "0.5",
       pointerEvents: "none",
     },
+    ".group.destructive &": {
+      borderColor: { base: "zinc.100/40", _dark: "zinc.800/40" },
+      _hover: {
+        bgColor: "destructive",
+        color: "zinc.50",
+        borderColor: "destructive/30",
+      },
+      _focus: {
+        "--ring-color": "colors.destructive",
+      },
+    },
   },
 });
 
 const closeStyles = css({
-  // "group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600  ",
   position: "absolute",
   right: "2",
   top: "2",
   rounded: "md",
   padding: "1",
-  color: { base: "zinc.950/50", _dark: "zinc.50/50" },
+  color: "foreground/50",
   opacity: "0",
   transition: "opacity",
+  cursor: "pointer",
   _hover: {
-    color: { base: "zinc.950", _dark: "zinc.50" },
+    color: "foreground",
   },
   _groupHover: {
     opacity: "1",
@@ -160,7 +166,16 @@ const closeStyles = css({
   _focus: {
     opacity: "1",
     outline: "none",
-    ring: "2",
+    shadow: "0 0 0 2px rgba(59,130,246,.5)",
+  },
+  ".group.destructive &": {
+    color: "red.300",
+    _hover: {
+      color: "red.50",
+    },
+    _focus: {
+      shadow: "0 0 0 2px token(colors.red.400)",
+    },
   },
 });
 

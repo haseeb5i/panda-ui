@@ -34,6 +34,7 @@ import { SkeletonDemo } from "@/components/ui/skeleton";
 import { DatePickerDemo } from "@/components/ui/date-picker";
 import { TableDemo } from "@/components/ui/table";
 import { SheetDemo } from "@/components/ui/sheet";
+import { ToastDemo } from "@/components/ui/toaster";
 
 export default function Home() {
   return (
@@ -156,6 +157,10 @@ export default function Home() {
         <TabsDemo />
       </DemoBox>
 
+      <DemoBox title="Toast">
+        <ToastDemo />
+      </DemoBox>
+
       <DemoBox title="Tooltip">
         <TooltipDemo />
       </DemoBox>
@@ -192,7 +197,7 @@ function DemoBox({
   );
 }
 
- function ButtonDemo() {
+function ButtonDemo() {
   return (
     <div className={flex({ align: "center", gap: "4" })}>
       <Button>

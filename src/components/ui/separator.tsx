@@ -13,12 +13,12 @@ const Separator = styled(
       flexShrink: 0,
       bgColor: "border",
       "&[data-orientation=horizontal]": {
-        h: "1px",
-        w: "full",
+        height: "1px",
+        width: "full",
       },
       "&[data-orientation=vertical]": {
-        h: "full",
-        w: "1px",
+        height: "full",
+        width: "1px",
       },
     },
   },

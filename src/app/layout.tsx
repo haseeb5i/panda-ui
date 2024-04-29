@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 
+import { Toaster } from "@/components/ui/toaster"
+
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -18,6 +20,7 @@ export default function RootLayout({
     <html lang="en" className={GeistSans.variable} suppressHydrationWarning>
       <body>
         <Providers>{children}</Providers>
+        <Toaster />
       </body>
     </html>
   );

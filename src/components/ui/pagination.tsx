@@ -10,8 +10,8 @@ const Pagination = styled(
   {
     base: {
       display: "flex",
-      mx: "auto",
-      w: "full",
+      marginX: "auto",
+      width: "full",
       justifyContent: "center",
     },
   },
@@ -20,7 +20,7 @@ const Pagination = styled(
       role: "navigation",
       "aria-label": "pagination",
     },
-  }
+  },
 );
 Pagination.displayName = "Pagination";
 
@@ -51,12 +51,11 @@ const PaginationLink = ({
   <a
     aria-current={isActive ? "page" : undefined}
     className={cx(
-      buttonVariants({
-        size,
-        variant: isActive ? "outline" : "ghost",
-      }),
-      css(cssProp),
-      className
+      css(
+        buttonVariants.raw({ size, variant: isActive ? "outline" : "ghost" }),
+        cssProp,
+      ),
+      className,
     )}
     {...props}
   />

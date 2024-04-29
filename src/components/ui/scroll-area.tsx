@@ -34,7 +34,7 @@ const scrollbarStyles = css({
   display: "flex",
   touchAction: "none",
   userSelect: "none",
-  transition: "border-color 0.15s",
+  transition: "colors",
   "&[data-orientation=vertical]": {
     height: "full",
     width: "2.5",

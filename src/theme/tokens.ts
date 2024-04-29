@@ -46,13 +46,19 @@ export const semanticTokens = defineSemanticTokens({
     border: {
       value: { base: "{colors.zinc.200}", _dark: "{colors.zinc.800}" },
     },
+    destructive: {
+      value: { base: "{colors.red.500}", _dark: "{colors.red.900}" },
+    },
     ring: {
       value: { base: "hsl(240 5% 64.9%)", _dark: "hsl(240 4.9% 83.9%)" },
     },
   },
   shadows: {
     outline: {
-      value: ["0 0 0 2px {colors.background}", "0 0 0 4px {colors.ring}"],
+      value: [
+        "0 0 0 2px var(--ring-offset-color, {colors.background})",
+        "0 0 0 4px var(--ring-color, {colors.ring})",
+      ],
     },
   },
 });

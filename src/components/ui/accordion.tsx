@@ -20,15 +20,15 @@ const triggerStyles = css.raw({
   flex: 1,
   alignItems: "center",
   justifyContent: "space-between",
-  paddingY: "1rem",
-  fontWeight: "500",
-  transition: "all 200ms",
+  paddingY: "4",
+  fontWeight: "medium",
+  transition: "all",
   cursor: "pointer",
   _hover: {
     textDecoration: "underline",
   },
   "&[data-state=open] > svg": {
-    transform: "rotate(180deg)",
+    rotate: "180deg",
   },
 });
 
@@ -45,8 +45,9 @@ const AccordionTrigger = React.forwardRef<
       {children}
       <ChevronDown
         className={css({
-          transition: "transform 200ms",
-          size: "1rem",
+          transition: "transform",
+          transitionDuration: "200ms",
+          size: "4",
           flexShrink: 0,
         })}
       />
@@ -59,7 +60,7 @@ const contentStyles = css({
   overflow: "hidden",
   fontSize: "sm",
   lineHeight: "snug",
-  transition: "all 200ms",
+  transition: "all",
   _open: {
     animation: "accordionDown 0.2s ease-out",
   },
@@ -108,3 +109,4 @@ export function AccordionDemo() {
     </Accordion>
   );
 }
+

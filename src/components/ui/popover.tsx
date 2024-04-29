@@ -24,18 +24,20 @@ const contentStyles = css.raw({
   shadow: "md",
   outline: "none",
   willChange: "transform, opacity",
-  "--scale": "0.95",
-  "--opacity": "0",
   _open: {
     animation: "enter",
-    "&[data-side=top]": { translateY: "2" },
-    "&[data-side=bottom]": { translateY: "-2" },
-    "&[data-side=left]": { translateX: "2" },
-    "&[data-side=right]": { translateX: "-2" },
+    fadeIn: 0,
+    zoomIn: 0.95,
   },
   _closed: {
     animation: "exit",
+    fadeOut: 0,
+    zoomOut: 0.95,
   },
+  "&[data-side=top]": { slideInY: "2" },
+  "&[data-side=bottom]": { slideInY: "-2" },
+  "&[data-side=left]": { slideInX: "2" },
+  "&[data-side=right]": { slideInX: "-2" },
 });
 
 const PopoverContent = React.forwardRef<

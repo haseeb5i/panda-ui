@@ -12,7 +12,7 @@ const badgeVariants = cva({
     paddingY: 0.5,
     textStyle: "xs",
     fontWeight: "semibold",
-    transitionProperty: "color, background-color",
+    transitionProperty: "colors",
     _focus: {
       outline: "2px solid transparent",
       outlineOffset: "2px",
@@ -25,11 +25,13 @@ const badgeVariants = cva({
         borderColor: "transparent",
         bgColor: "primary",
         color: "primaryForeground",
+        _hover: { bgColor: "primary/80" },
       },
       secondary: {
         borderColor: "transparent",
         bgColor: "accent",
         color: "accentForeground",
+        _hover: { bgColor: "accent/80" },
       },
       destructive: {
         borderColor: "transparent",

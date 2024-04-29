@@ -31,7 +31,7 @@ const TabsTrigger = styled(TabsPrimitive.Trigger, {
     paddingY: "1.5",
     textStyle: "sm",
     fontWeight: "medium",
-    // transition: "all",
+    transition: "all",
     cursor: "pointer",
     _focusVisible: {
       outline: "2px solid transparent",

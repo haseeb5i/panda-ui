@@ -17,7 +17,7 @@ import { flex } from "@/styles/patterns";
 const Breadcrumb = styled(
   "nav",
   {},
-  { defaultProps: { "aria-label": "breadcrumb" } }
+  { defaultProps: { "aria-label": "breadcrumb" } },
 );
 Breadcrumb.displayName = "Breadcrumb";
 
@@ -29,7 +29,7 @@ const BreadcrumbList = styled("ol", {
     gap: { base: "1.5", sm: "2.5" },
     wordBreak: "break-word",
     textStyle: "sm",
-    color: 'mutedForeground',
+    color: "mutedForeground",
   },
 });
 BreadcrumbList.displayName = "BreadcrumbList";
@@ -55,8 +55,8 @@ const BreadcrumbLink = React.forwardRef<
     <Comp
       ref={ref}
       className={cx(
-        css({ transition: "color 0.15s", _hover: { color: "foreground" } }),
-        className
+        css({ transition: "colors", _hover: { color: "foreground" } }),
+        className,
       )}
       {...props}
     />
@@ -78,7 +78,7 @@ const BreadcrumbPage = styled(
       "aria-disabled": true,
       "aria-current": "page",
     },
-  }
+  },
 );
 BreadcrumbPage.displayName = "BreadcrumbPage";
 
@@ -90,7 +90,7 @@ const BreadcrumbSeparator = ({
   <li
     role="presentation"
     aria-hidden="true"
-    className={cx(css(), className)}
+    className={cx(className)}
     {...props}
   >
     {children ?? <ChevronRight className={css({ size: "3.5" })} />}

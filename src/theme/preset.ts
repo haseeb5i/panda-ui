@@ -9,6 +9,16 @@ export const appPreset = definePreset({
   globalCss,
   globalVars: {
     "--global-color-border": "var(--colors-border)",
+    // "--enter-opacity": {
+    //   syntax: "<number>",
+    //   initialValue: "1",
+    //   inherits: false,
+    // },
+    // "--fade-in": {
+    //   syntax: "<number>",
+    //   initialValue: "1",
+    //   inherits: false,
+    // },
   },
 
   theme: {
@@ -24,13 +34,16 @@ export const appPreset = definePreset({
     extend: {
       open: "&[data-state=open]",
       closed: "&[data-state=closed]",
+      top: "&[data-side=top]",
+      bottom: "&[data-side=bottom]",
+      left: "&[data-side=left]",
+      right: "&[data-side=right]",
     },
   },
 
   utilities: {
     extend: {
       dflex: {
-        className: "dflex",
         values: "alignItems",
         transform: (value) => ({
           display: "flex",
@@ -39,8 +52,7 @@ export const appPreset = definePreset({
         }),
       },
       size: {
-        className: "size",
-        values: "sizes",
+        values: (theme) => theme("sizes"),
         transform: (value) => ({
           width: value,
           height: value,
@@ -53,6 +65,43 @@ export const appPreset = definePreset({
       //     "&::selection": {
       //       WebkitTextFillColor: "$colors$text",
       //     },
+      fadeIn: {
+        values: "opacity",
+        transform: (value) => ({ "--enter-opacity": value }),
+      },
+      fadeOut: {
+        values: "opacity",
+        transform: (value) => ({ "--exit-opacity": value }),
+      },
+      fadeInOut: {
+        values: "opacity",
+        transform: (value) => ({
+          "--enter-opacity": value,
+          "--exit-opacity": value,
+        }),
+      },
+      zoomIn: {
+        transform: (value) => ({ "--enter-scale": value }),
+      },
+      zoomOut: {
+        transform: (value) => ({ "--exit-scale": value }),
+      },
+      slideInY: {
+        values: (theme) => theme("spacing"),
+        transform: (value) => ({ "--enter-translate-y": value }),
+      },
+      slideInX: {
+        values: (theme) => theme("spacing"),
+        transform: (value) => ({ "--enter-translate-x": value }),
+      },
+      slideOutY: {
+        values: (theme) => theme("spacing"),
+        transform: (value) => ({ "--exit-translate-y": value }),
+      },
+      slideOutX: {
+        values: (theme) => theme("spacing"),
+        transform: (value) => ({ "--exit-translate-x": value }),
+      },
     },
   },
 });

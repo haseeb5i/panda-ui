@@ -17,11 +17,7 @@ const rootStyles = css.raw({
   borderWidth: "2px",
   borderColor: "transparent",
   bgColor: "border",
-
-  // TODO: simplify this
-  transition: ".15s cubic-bezier(0.4, 0, 0.2, 1)",
-  transitionProperty: "color,background-color,fill",
-
+  transition: "colors",
   _focusVisible: {
     outline: "2px solid transparent",
     outlineOffset: "2px",
@@ -45,7 +41,7 @@ const thumbStyles = css({
   shadow: "lg",
   ring: 0,
   translate: "auto",
-  transition: "translate .15s cubic-bezier(0.4, 0, 0.2, 1)",
+  transition: "transform",
   _checked: {
     translateX: "5",
   },

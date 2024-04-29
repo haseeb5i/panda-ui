@@ -1,7 +1,9 @@
 import { css } from "@/styles/css";
 import { flex } from "@/styles/patterns";
+import { ChevronRight, Mail } from "lucide-react";
+
 import { Checkbox } from "@/components/ui/checkbox";
-import { ButtonDemo } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { InputOTPDemo } from "@/components/ui/input-otp";
 import { Label } from "@/components/ui/label";
@@ -9,7 +11,7 @@ import { RadioGroupDemo } from "@/components/ui/radio-group";
 import { SeparatorDemo } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { TabsDemo } from "@/components/ui/tabs";
 import { TooltipDemo } from "@/components/ui/tooltip";
 import { ThemeToggle } from "./theme-toggle";
 import { DropdownMenuDemo } from "@/components/ui/dropdown-menu";
@@ -29,6 +31,9 @@ import { CalendarDemo } from "@/components/ui/calendar";
 import { CardDemo } from "@/components/ui/card";
 import { ProgressDemo } from "@/components/ui/progress";
 import { SkeletonDemo } from "@/components/ui/skeleton";
+import { DatePickerDemo } from "@/components/ui/date-picker";
+import { TableDemo } from "@/components/ui/table";
+import { SheetDemo } from "@/components/ui/sheet";
 
 export default function Home() {
   return (
@@ -79,6 +84,10 @@ export default function Home() {
         <CollapsibleDemo />
       </DemoBox>
 
+      <DemoBox title="Date Picker">
+        <DatePickerDemo />
+      </DemoBox>
+
       <DemoBox title="Dialog">
         <DialogDemo />
       </DemoBox>
@@ -123,16 +132,24 @@ export default function Home() {
         <SeparatorDemo />
       </DemoBox>
 
-      <DemoBox title="Slider">
-        <SliderDemo />
+      <DemoBox title="Sheet">
+        <SheetDemo />
       </DemoBox>
 
       <DemoBox title="Skeleton">
         <SkeletonDemo />
       </DemoBox>
 
+      <DemoBox title="Slider">
+        <SliderDemo />
+      </DemoBox>
+
       <DemoBox title="Switch">
         <SwitchDemo />
+      </DemoBox>
+
+      <DemoBox title="Table">
+        <TableDemo />
       </DemoBox>
 
       <DemoBox title="Tabs">
@@ -146,7 +163,7 @@ export default function Home() {
   );
 }
 
-// sheet, table, form?,
+// toast, form?,
 
 function DemoBox({
   title,
@@ -175,20 +192,30 @@ function DemoBox({
   );
 }
 
+export function ButtonDemo() {
+  return (
+    <div className={flex({ align: "center", gap: "4" })}>
+      <Button>
+        <Mail className={css({ size: "4", mr: "2" })} />
+        Primary
+      </Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+
+      <Button variant="outline" size="icon">
+        <ChevronRight className={css({ size: "4" })} />
+      </Button>
+    </div>
+  );
+}
+
 function CheckboxDemo() {
   return (
     <div className={flex({ align: "center", spaceX: "2" })}>
       <Checkbox id="terms" />
       <Label htmlFor="terms">Accept terms and conditions</Label>
-    </div>
-  );
-}
-
-function SwitchDemo() {
-  return (
-    <div className={flex({ align: "center", spaceX: "2" })}>
-      <Switch id="airplane-mode" />
-      <Label htmlFor="airplane-mode">Airplane Mode</Label>
     </div>
   );
 }
@@ -203,20 +230,12 @@ function InputDemo() {
   );
 }
 
-function TabsDemo() {
+function SwitchDemo() {
   return (
-    <Tabs defaultValue="account" css={{ w: "400px" }}>
-      <TabsList css={{ display: "grid", w: "full", gridTemplateColumns: "2" }}>
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
-      </TabsList>
-      <TabsContent value="account">
-        <div>tab 1</div>
-      </TabsContent>
-      <TabsContent value="password">
-        <div>tab 2</div>
-      </TabsContent>
-    </Tabs>
+    <div className={flex({ align: "center", spaceX: "2" })}>
+      <Switch id="airplane-mode" />
+      <Label htmlFor="airplane-mode">Airplane Mode</Label>
+    </div>
   );
 }
 

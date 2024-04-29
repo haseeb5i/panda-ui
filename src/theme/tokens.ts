@@ -8,6 +8,12 @@ export const tokens = defineTokens({
   },
   sizes: {},
   animations: {
+    enter: {
+      value: "enter .15s",
+    },
+    exit: {
+      value: "exit .15s",
+    },
     "caret-blink": {
       value: "caretBlink 1s ease-out infinite",
     },

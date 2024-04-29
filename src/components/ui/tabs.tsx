@@ -62,3 +62,20 @@ const TabsContent = styled(TabsPrimitive.Content, {
 });
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };
+
+export function TabsDemo() {
+  return (
+    <Tabs defaultValue="account" css={{ w: "400px" }}>
+      <TabsList css={{ display: "grid", w: "full", gridTemplateColumns: "2" }}>
+        <TabsTrigger value="account">Account</TabsTrigger>
+        <TabsTrigger value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">
+        <div>tab 1</div>
+      </TabsContent>
+      <TabsContent value="password">
+        <div>tab 2</div>
+      </TabsContent>
+    </Tabs>
+  );
+}

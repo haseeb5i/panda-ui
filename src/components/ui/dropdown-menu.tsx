@@ -37,13 +37,17 @@ const baseContentStyles = {
   borderWidth: "1px",
   padding: "1",
   bgColor: "background",
-  animationDuration: "400ms",
-  animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+  "--scale": "0.95",
+  "--opacity": "0",
   _open: {
-    "&[data-side=top]": { animationName: "slideDown, fadeIn" },
-    "&[data-side=right]": { animationName: "slideLeft, fadeIn" },
-    "&[data-side=bottom]": { animationName: "slideUp, fadeIn" },
-    "&[data-side=left]": { animationName: "slideRight, fadeIn" },
+    animation: "enter",
+    "&[data-side=top]": { translateY: "2" },
+    "&[data-side=bottom]": { translateY: "-2" },
+    "&[data-side=left]": { translateX: "2" },
+    "&[data-side=right]": { translateX: "-2" },
+  },
+  _closed: {
+    animation: "exit",
   },
 };
 

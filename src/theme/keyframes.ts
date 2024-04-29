@@ -30,6 +30,21 @@ export const keyframes = defineKeyframes({
     "0%": { transform: "translateX(2px)" },
     "100%": { transform: "translateX(0)" },
   },
+  // TODO: improve this
+  enter: {
+    "0%": {
+      opacity: "var(--opacity,1)",
+      translate: "var(--translate-x) var(--translate-y)",
+      scale: "var(--scale,1) var(--scale,1)",
+    },
+  },
+  exit: {
+    "100%": {
+      opacity: "var(--opacity,1)",
+      translate: "var(--translate-x) var(--translate-y)",
+      scale: "var(--scale,1) var(--scale,1)",
+    },
+  },
   // generic
   fadeIn: {
     "0%": { opacity: 0 },

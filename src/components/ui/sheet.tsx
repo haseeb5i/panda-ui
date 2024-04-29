@@ -1,57 +1,111 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as SheetPrimitive from "@radix-ui/react-dialog"
-import { cva, type VariantProps } from "class-variance-authority"
-import { X } from "lucide-react"
+import * as React from "react";
+import * as SheetPrimitive from "@radix-ui/react-dialog";
+import { X } from "lucide-react";
 
-import { cn } from "@/lib/utils"
+import { styled } from "@/styles/jsx";
+import { type RecipeVariantProps, cva, cx, css } from "@/styles/css";
+import { Button } from "./button";
+import { Label } from "./label";
+import { Input } from "./input";
 
-const Sheet = SheetPrimitive.Root
+const Sheet = SheetPrimitive.Root;
 
-const SheetTrigger = SheetPrimitive.Trigger
+const SheetTrigger = SheetPrimitive.Trigger;
 
-const SheetClose = SheetPrimitive.Close
+const SheetClose = SheetPrimitive.Close;
 
-const SheetPortal = SheetPrimitive.Portal
+const SheetPortal = SheetPrimitive.Portal;
 
-const SheetOverlay = React.forwardRef<
-  React.ElementRef<typeof SheetPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
->(({ className, ...props }, ref) => (
-  <SheetPrimitive.Overlay
-    className={cn(
-      "fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-      className
-    )}
-    {...props}
-    ref={ref}
-  />
-))
-SheetOverlay.displayName = SheetPrimitive.Overlay.displayName
+const SheetOverlay = styled(SheetPrimitive.Overlay, {
+  base: {
+    position: "fixed",
+    inset: 0,
+    bgColor: "black/80",
+    _open: {
+      animation: "fadeIn .15s cubic-bezier(0.16, 1, 0.3, 1)",
+    },
+  },
+});
 
-const sheetVariants = cva(
-  "fixed z-50 gap-4 bg-white p-6 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500 dark:bg-zinc-950",
-  {
-    variants: {
-      side: {
-        top: "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
-        bottom:
-          "inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
-        left: "inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
-        right:
-          "inset-y-0 right-0 h-full w-3/4  border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+const sheetVariants = cva({
+  base: {
+    position: "fixed",
+    zIndex: "50",
+    gap: "4",
+    bgColor: "background",
+    padding: "6",
+    shadow: "lg",
+    _open: {
+      animation: "enter 0.5s token(easings.in-out)",
+    },
+    _closed: {
+      animation: "exit 0.3s token(easings.in-out)",
+    },
+  },
+  variants: {
+    side: {
+      top: {
+        insetX: 0,
+        top: 0,
+        borderBottomWidth: "1px",
+        translateY: "-100%", // initial
+      },
+      bottom: {
+        insetX: 0,
+        bottom: 0,
+        borderTopWidth: "1px",
+        translateY: "100%",
+      },
+      left: {
+        insetY: 0,
+        left: 0,
+        height: "full",
+        width: { base: "3/4", sm: "sm" },
+        borderRightWidth: "1px",
+        translateX: "-100%",
+      },
+      right: {
+        insetY: 0,
+        right: 0,
+        height: "full",
+        width: { base: "3/4", sm: "sm" },
+        borderLeftWidth: "1px",
+        translateX: "100%",
       },
     },
-    defaultVariants: {
-      side: "right",
-    },
-  }
-)
+  },
+  defaultVariants: {
+    side: "right",
+  },
+});
 
-interface SheetContentProps
-  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
-    VariantProps<typeof sheetVariants> {}
+const closeStyles = css({
+  position: "absolute",
+  right: "4",
+  top: "4",
+  rounded: "sm",
+  opacity: 0.7,
+  transition: "opacity 0.15s",
+  cursor: "pointer",
+  _hover: {
+    opacity: 1,
+  },
+  _focus: {
+    outline: "2px solid transparent",
+    outlineOffset: "2px",
+    boxShadow: "outline",
+  },
+  _disabled: {
+    pointerEvents: "none",
+  },
+});
+
+type SheetContentProps = React.ComponentPropsWithoutRef<
+  typeof SheetPrimitive.Content
+> &
+  RecipeVariantProps<typeof sheetVariants>;
 
 const SheetContent = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Content>,
@@ -61,70 +115,57 @@ const SheetContent = React.forwardRef<
     <SheetOverlay />
     <SheetPrimitive.Content
       ref={ref}
-      className={cn(sheetVariants({ side }), className)}
+      className={cx(sheetVariants({ side }), className)}
       {...props}
     >
       {children}
-      <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-zinc-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-zinc-100 dark:ring-offset-zinc-950 dark:focus:ring-zinc-300 dark:data-[state=open]:bg-zinc-800">
-        <X className="h-4 w-4" />
-        <span className="sr-only">Close</span>
+      <SheetPrimitive.Close className={closeStyles}>
+        <X className={css({ size: "4" })} />
+        <span className={css({ srOnly: true })}>Close</span>
       </SheetPrimitive.Close>
     </SheetPrimitive.Content>
   </SheetPortal>
-))
-SheetContent.displayName = SheetPrimitive.Content.displayName
+));
+SheetContent.displayName = SheetPrimitive.Content.displayName;
 
-const SheetHeader = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn(
-      "flex flex-col space-y-2 text-center sm:text-left",
-      className
-    )}
-    {...props}
-  />
-)
-SheetHeader.displayName = "SheetHeader"
+const SheetHeader = styled("div", {
+  base: {
+    display: "flex",
+    flexDir: "column",
+    spaceY: "2",
+    textAlign: { base: "center", sm: "left" },
+  },
+});
+SheetHeader.displayName = "SheetHeader";
 
-const SheetFooter = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn(
-      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
-      className
-    )}
-    {...props}
-  />
-)
-SheetFooter.displayName = "SheetFooter"
+const SheetFooter = styled("div", {
+  base: {
+    display: "flex",
+    flexDir: "column-reverse",
+    spaceY: "2",
+    sm: {
+      flexDir: "row",
+      justifyContent: "end",
+      spaceX: "2",
+    },
+  },
+});
+SheetFooter.displayName = "SheetFooter";
 
-const SheetTitle = React.forwardRef<
-  React.ElementRef<typeof SheetPrimitive.Title>,
-  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
->(({ className, ...props }, ref) => (
-  <SheetPrimitive.Title
-    ref={ref}
-    className={cn("text-lg font-semibold text-zinc-950 dark:text-zinc-50", className)}
-    {...props}
-  />
-))
-SheetTitle.displayName = SheetPrimitive.Title.displayName
+const SheetTitle = styled(SheetPrimitive.Title, {
+  base: {
+    textStyle: "lg",
+    fontWeight: "semibold",
+    color: "foreground",
+  },
+});
 
-const SheetDescription = React.forwardRef<
-  React.ElementRef<typeof SheetPrimitive.Description>,
-  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
->(({ className, ...props }, ref) => (
-  <SheetPrimitive.Description
-    ref={ref}
-    className={cn("text-sm text-zinc-500 dark:text-zinc-400", className)}
-    {...props}
-  />
-))
-SheetDescription.displayName = SheetPrimitive.Description.displayName
+const SheetDescription = styled(SheetPrimitive.Description, {
+  base: {
+    textStyle: "sm",
+    color: "mutedForeground",
+  },
+});
 
 export {
   Sheet,
@@ -137,4 +178,84 @@ export {
   SheetFooter,
   SheetTitle,
   SheetDescription,
+};
+
+// const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
+type SheetSide = "top" | "right" | "bottom" | "left";
+
+export function SheetDemo() {
+  const [side, setSideState] = React.useState<SheetSide>("right");
+  const [open, setOpen] = React.useState(false);
+
+  function setSide(newSide: SheetSide) {
+    setSideState(newSide);
+    setOpen(true);
+  }
+
+  return (
+    <>
+      <div className={css({ dflex: "center", gap: "2" })}>
+        <Button variant="outline" onClick={() => setSide("top")}>
+          Top
+        </Button>
+        <Button variant="outline" onClick={() => setSide("right")}>
+          Right
+        </Button>
+        <Button variant="outline" onClick={() => setSide("bottom")}>
+          Bottom
+        </Button>
+        <Button variant="outline" onClick={() => setSide("left")}>
+          Left
+        </Button>
+      </div>
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetContent side={side}>
+          <SheetHeader>
+            <SheetTitle>Edit profile</SheetTitle>
+            <SheetDescription>
+              Make changes to your profile here. Click save when you&apos;re
+              done.
+            </SheetDescription>
+          </SheetHeader>
+          <div className={css({ display: "grid", gap: "4", py: "4" })}>
+            <div
+              className={css({
+                display: "grid",
+                gridTemplateColumns: "4",
+                gap: "4",
+                alignItems: "center",
+              })}
+            >
+              <Label htmlFor="name" css={{ textAlign: "right" }}>
+                Name
+              </Label>
+              <Input id="name" value="Pedro Duarte" css={{ gridColumn: "3" }} />
+            </div>
+            <div
+              className={css({
+                display: "grid",
+                gridTemplateColumns: "4",
+                gap: "4",
+                alignItems: "center",
+              })}
+            >
+              <Label htmlFor="username" css={{ textAlign: "right" }}>
+                Username
+              </Label>
+              <Input
+                id="username"
+                value="@peduarte"
+                css={{ gridColumn: "3" }}
+              />
+            </div>
+          </div>
+          <SheetFooter>
+            <SheetClose asChild>
+              <Button type="submit">Save changes</Button>
+            </SheetClose>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
+    </>
+  );
 }

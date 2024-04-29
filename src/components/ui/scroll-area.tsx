@@ -15,7 +15,7 @@ const ScrollArea = React.forwardRef<
     ref={ref}
     className={cx(
       css({ pos: "relative", overflow: "hidden" }, cssProp),
-      className
+      className,
     )}
     {...props}
   >
@@ -74,7 +74,7 @@ ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
 export { ScrollArea, ScrollBar };
 
 const tags = Array.from({ length: 50 }).map(
-  (_, i, a) => `v1.2.0-beta.${a.length - i}`
+  (_, i, a) => `v1.2.0-beta.${a.length - i}`,
 );
 
 export function ScrollAreaDemo() {
@@ -92,12 +92,10 @@ export function ScrollAreaDemo() {
           Tags
         </h4>
         {tags.map((tag) => (
-          <>
-            <div key={tag} className={css({ textStyle: "sm" })}>
-              {tag}
-            </div>
+          <React.Fragment key={tag}>
+            <div className={css({ textStyle: "sm" })}>{tag}</div>
             <Separator css={{ my: 2 }} />
-          </>
+          </React.Fragment>
         ))}
       </div>
     </ScrollArea>

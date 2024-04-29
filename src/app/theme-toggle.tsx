@@ -9,8 +9,6 @@ import { css } from "@/styles/css";
 
 export function ThemeToggle() {
   const { setTheme, theme } = useTheme();
-
-  console.log(theme);
   const isDark = theme === "dark";
 
   return (

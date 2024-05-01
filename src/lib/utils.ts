@@ -1,6 +1,4 @@
-// import { type ClassValue, clsx } from "clsx"
-// import { twMerge } from "tailwind-merge"
-
+// TODO: remove this
 export function cn(...inputs: any[]) {
   return inputs.filter(Boolean).join(" ");
 }

@@ -3,7 +3,7 @@ import { globalCss } from "./globalCss";
 
 import { semanticTokens, tokens } from "./tokens";
 import { keyframes } from "./keyframes";
-import { textStyles } from "@/typography";
+import { textStyles } from "./typography";
 
 export const appPreset = definePreset({
   globalCss,
@@ -34,7 +34,7 @@ export const appPreset = definePreset({
   utilities: {
     extend: {
       dflex: {
-        values: "alignItems",
+        values: ["center", "start", "end"],
         transform: (value) => ({
           display: "flex",
           alignItems: value,

@@ -41,7 +41,7 @@ const thumbStyles = css({
   shadow: "lg",
   ring: 0,
   translate: "auto",
-  transition: "transform",
+  transition: "translate .15s token(easings.default)",
   _checked: {
     translateX: "5",
   },

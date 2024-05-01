@@ -1,6 +1,7 @@
 import { definePreset } from "@pandacss/dev";
 import { globalCss } from "./globalCss";
 
+import { recipes, slotRecipes } from "./recipes";
 import { semanticTokens, tokens } from "./tokens";
 import { keyframes } from "./keyframes";
 import { textStyles } from "./typography";
@@ -17,6 +18,8 @@ export const appPreset = definePreset({
       semanticTokens,
       keyframes,
       textStyles,
+      recipes,
+      slotRecipes,
     },
   },
 

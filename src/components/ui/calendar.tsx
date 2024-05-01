@@ -4,7 +4,7 @@ import * as React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DayPicker } from "react-day-picker";
 
-import { buttonVariants } from "@/components/ui/button";
+import { button } from "@/styles/recipes";
 import { css, cx } from "@/styles/css";
 import { HTMLStyledProps } from "@/styles/types";
 
@@ -49,13 +49,16 @@ const classes = {
   caption: css({ dflex: "center", paddingTop: "1", position: "relative" }),
   caption_label: css({ textStyle: "sm", fontWeight: "medium" }),
   nav: css({ spaceX: 1, display: "flex", alignItems: "center" }),
-  nav_button: css(buttonVariants.raw({ variant: "outline" }), {
-    size: "7",
-    bgColor: "transparent",
-    p: "0",
-    opacity: "0.5",
-    _hover: { opacity: "100" },
-  }),
+  nav_button: cx(
+    button({ variant: "outline" }),
+    css({
+      size: "7",
+      bgColor: "transparent",
+      p: "0",
+      opacity: "0.5",
+      _hover: { opacity: "100" },
+    }),
+  ),
   nav_button_previous: css({ position: "absolute", left: "1" }),
   nav_button_next: css({ position: "absolute", right: "1" }),
   table: css({ width: "full", borderCollapse: "collapse", spaceY: 1 }),
@@ -95,14 +98,17 @@ const classes = {
       zIndex: 20,
     },
   }),
-  day: css(buttonVariants.raw({ variant: "ghost" }), {
-    padding: "0",
-    size: "9",
-    fontWeight: "normal",
-    "&[aria-selected]": {
-      opacity: 1,
-    },
-  }),
+  day: cx(
+    button({ variant: "ghost" }),
+    css({
+      padding: "0",
+      size: "9",
+      fontWeight: "normal",
+      "&[aria-selected]": {
+        opacity: 1,
+      },
+    }),
+  ),
   day_range_end: "day-range-end",
   day_selected: css({
     bgColor: "primary!",
@@ -129,7 +135,7 @@ const classes = {
         opacity: 0.3,
       },
     }),
-    "day-outside"
+    "day-outside",
   ),
   day_disabled: css({
     color: "mutedForeground",

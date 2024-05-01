@@ -5,60 +5,23 @@ import * as SwitchPrimitives from "@radix-ui/react-switch";
 
 import { css, cx } from "@/styles/css";
 import { HTMLStyledProps } from "@/styles/types";
-
-const rootStyles = css.raw({
-  display: "inline-flex",
-  height: "6",
-  width: "11",
-  flexShrink: 0,
-  cursor: "pointer",
-  alignItems: "center",
-  rounded: "full",
-  borderWidth: "2px",
-  borderColor: "transparent",
-  bgColor: "border",
-  transition: "colors",
-  _focusVisible: {
-    outline: "2px solid transparent",
-    outlineOffset: "2px",
-    boxShadow: "outline",
-  },
-  _disabled: {
-    pointerEvents: "none",
-    opacity: "0.5",
-  },
-  _checked: {
-    bgColor: "primary",
-  },
-});
-
-const thumbStyles = css({
-  pointerEvents: "none",
-  display: "block",
-  size: "5",
-  rounded: "full",
-  bgColor: "background",
-  shadow: "lg",
-  ring: 0,
-  translate: "auto",
-  transition: "translate .15s token(easings.default)",
-  _checked: {
-    translateX: "5",
-  },
-});
+import { switchRecipe } from "@/styles/recipes";
 
 const Switch = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitives.Root>,
   HTMLStyledProps<typeof SwitchPrimitives.Root>
->(({ className, css: cssProp, ...props }, ref) => (
-  <SwitchPrimitives.Root
-    className={cx("peer", css(rootStyles, cssProp), className)}
-    {...props}
-    ref={ref}
-  >
-    <SwitchPrimitives.Thumb className={thumbStyles} />
-  </SwitchPrimitives.Root>
-));
+>(({ className, css: cssProp, ...props }, ref) => {
+  const styles = switchRecipe();
+  return (
+    <SwitchPrimitives.Root
+      ref={ref}
+      className={cx("peer", css(cssProp), styles.root, className)}
+      {...props}
+    >
+      <SwitchPrimitives.Thumb className={styles.thumb} />
+    </SwitchPrimitives.Root>
+  );
+});
 Switch.displayName = SwitchPrimitives.Root.displayName;
 
 export { Switch };

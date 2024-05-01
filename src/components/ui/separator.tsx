@@ -3,31 +3,14 @@
 import * as SeparatorPrimitive from "@radix-ui/react-separator";
 
 import { styled } from "@/styles/jsx";
+import { separator } from "@/styles/recipes";
 import { css } from "@/styles/css";
-import { flex } from "@/styles/patterns";
 
-const Separator = styled(
-  SeparatorPrimitive.Root,
-  {
-    base: {
-      flexShrink: 0,
-      bgColor: "border",
-      "&[data-orientation=horizontal]": {
-        height: "1px",
-        width: "full",
-      },
-      "&[data-orientation=vertical]": {
-        height: "full",
-        width: "1px",
-      },
-    },
+const Separator = styled(SeparatorPrimitive.Root, separator, {
+  defaultProps: {
+    decorative: true,
   },
-  {
-    defaultProps: {
-      decorative: true,
-    },
-  }
-);
+});
 
 export { Separator };
 
@@ -50,9 +33,10 @@ export function SeparatorDemo() {
       </div>
       <Separator css={{ my: "4" }} />
       <div
-        className={flex({
-          align: "center",
-          h: "5",
+        className={css({
+          display: "flex",
+          alignItems: "center",
+          height: "5",
           spaceX: "4",
           textStyle: "sm",
         })}

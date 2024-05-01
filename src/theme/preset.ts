@@ -9,16 +9,6 @@ export const appPreset = definePreset({
   globalCss,
   globalVars: {
     "--global-color-border": "var(--colors-border)",
-    // "--enter-opacity": {
-    //   syntax: "<number>",
-    //   initialValue: "1",
-    //   inherits: false,
-    // },
-    // "--fade-in": {
-    //   syntax: "<number>",
-    //   initialValue: "1",
-    //   inherits: false,
-    // },
   },
 
   theme: {
@@ -58,13 +48,6 @@ export const appPreset = definePreset({
           height: value,
         }),
       },
-      // textGradient: (value: Stitches.PropertyValue<"backgroundImage">) => ({
-      //     backgroundImage: `linear-gradient(${value})`,
-      //     WebkitBackgroundClip: "text",
-      //     WebkitTextFillColor: "transparent",
-      //     "&::selection": {
-      //       WebkitTextFillColor: "$colors$text",
-      //     },
       fadeIn: {
         values: "opacity",
         transform: (value) => ({ "--enter-opacity": value }),
@@ -72,13 +55,6 @@ export const appPreset = definePreset({
       fadeOut: {
         values: "opacity",
         transform: (value) => ({ "--exit-opacity": value }),
-      },
-      fadeInOut: {
-        values: "opacity",
-        transform: (value) => ({
-          "--enter-opacity": value,
-          "--exit-opacity": value,
-        }),
       },
       zoomIn: {
         transform: (value) => ({ "--enter-scale": value }),
@@ -105,3 +81,11 @@ export const appPreset = definePreset({
     },
   },
 });
+
+// textGradient: (value: Stitches.PropertyValue<"backgroundImage">) => ({
+//     backgroundImage: `linear-gradient(${value})`,
+//     WebkitBackgroundClip: "text",
+//     WebkitTextFillColor: "transparent",
+//     "&::selection": {
+//       WebkitTextFillColor: "$colors$text",
+//     },

@@ -45,16 +45,15 @@ const contentStyles = css.raw({
   translateX: "-50%",
   translateY: "-50%",
   translate: "auto",
-  animationDuration: ".2s!",
   _open: {
-    animation: "enter",
+    animation: "enter .2s",
     fadeIn: 0,
     zoomIn: 0.95,
     slideInX: "-50%",
     slideInY: "-48%",
   },
   _closed: {
-    animation: "exit",
+    animation: "exit .2s",
     fadeOut: 0,
     zoomOut: 0.95,
     slideOutX: "-50%",

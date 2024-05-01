@@ -13,9 +13,8 @@ const buttonVariants = cva({
     cursor: "pointer",
     transition: "colors",
     _focusVisible: {
-      outline: "2px solid transparent",
-      outlineOffset: "2px",
-      boxShadow: "outline",
+      ring: "outline",
+      ringOffset: "2px",
     },
     _disabled: {
       pointerEvents: "none",

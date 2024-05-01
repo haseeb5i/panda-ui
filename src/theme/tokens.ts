@@ -53,6 +53,9 @@ export const semanticTokens = defineSemanticTokens({
       value: { base: "hsl(240 5% 64.9%)", _dark: "hsl(240 4.9% 83.9%)" },
     },
   },
+  borders: {
+    outline: { value: "2px solid {colors.ring}" },
+  },
   shadows: {
     outline: {
       value: [

@@ -3,32 +3,19 @@
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
 import { styled } from "@/styles/jsx";
+import { avatar } from "@/styles/recipes";
+import { createStyleContext } from "@/lib/create-style-context";
 
-const Avatar = styled(AvatarPrimitive.Root, {
-  base: {
-    position: "relative",
-    display: "flex",
-    size: "10",
-    overflow: "hidden",
-    rounded: "full",
-  },
-});
+const { withProvider, withContext } = createStyleContext(avatar);
 
-const AvatarImage = styled(AvatarPrimitive.Image, {
-  base: {
-    aspectRatio: "square",
-    size: "full",
-  },
-});
+const Avatar = withProvider(styled(AvatarPrimitive.Root), "root");
 
-const AvatarFallback = styled(AvatarPrimitive.Fallback, {
-  base: {
-    dflex: 'center',
-    size: "full",
-    rounded: "full",
-    bgColor: "accent",
-  },
-});
+const AvatarImage = withContext(styled(AvatarPrimitive.Image), "image");
+
+const AvatarFallback = withContext(
+  styled(AvatarPrimitive.Fallback),
+  "fallback"
+);
 
 export { Avatar, AvatarImage, AvatarFallback };
 
@@ -40,4 +27,3 @@ export function AvatarDemo() {
     </Avatar>
   );
 }
-

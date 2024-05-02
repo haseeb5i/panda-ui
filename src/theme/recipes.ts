@@ -132,6 +132,35 @@ export const recipes = {
       size: "default",
     },
   }),
+  popover: defineRecipe({
+    className: "popover",
+    description: "Styles for the popover content",
+    base: {
+      zIndex: 50,
+      width: 72,
+      rounded: "md",
+      borderWidth: "1px",
+      bgColor: "background",
+      padding: 4,
+      shadow: "md",
+      outline: "none",
+      willChange: "transform, opacity",
+      _open: {
+        animation: "enter",
+        fadeIn: 0,
+        zoomIn: 0.95,
+      },
+      _closed: {
+        animation: "exit",
+        fadeOut: 0,
+        zoomOut: 0.95,
+      },
+      _top: { slideInY: "2" },
+      _bottom: { slideInY: "-2" },
+      _left: { slideInX: "2" },
+      _right: { slideInX: "-2" },
+    },
+  }),
   separator: defineRecipe({
     className: "separator",
     base: {
@@ -150,6 +179,29 @@ export const recipes = {
 };
 
 export const slotRecipes = {
+  avatar: defineSlotRecipe({
+    className: "avatar",
+    slots: ["root", "image", "fallback"],
+    base: {
+      root: {
+        position: "relative",
+        display: "flex",
+        size: "10",
+        overflow: "hidden",
+        rounded: "full",
+      },
+      image: {
+        aspectRatio: "square",
+        size: "full",
+      },
+      fallback: {
+        dflex: "center",
+        size: "full",
+        rounded: "full",
+        bgColor: "accent",
+      },
+    },
+  }),
   checkbox: defineSlotRecipe({
     className: "checkbox",
     slots: ["root", "indicator"],

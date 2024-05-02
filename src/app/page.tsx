@@ -21,7 +21,7 @@ import { BreadcrumbDemo } from "@/components/ui/breadcrumb";
 import { AccordionDemo } from "@/components/ui/accordion";
 import { AlertDemo } from "@/components/ui/alert";
 import { AvatarDemo } from "@/components/ui/avatar";
-import { BadgeDemo } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { DialogDemo } from "@/components/ui/dialog";
 import { AlertDialogDemo } from "@/components/ui/alert-dialog";
 import { PopoverDemo } from "@/components/ui/popover";
@@ -193,6 +193,17 @@ function DemoBox({
       >
         {children}
       </div>
+    </div>
+  );
+}
+
+export function BadgeDemo() {
+  return (
+    <div className={flex({ align: "center", gap: "4" })}>
+      <Badge>Primary</Badge>
+      <Badge variant="secondary">Secondary</Badge>
+      <Badge variant="destructive">Destructive</Badge>
+      <Badge variant="outline">Outline</Badge>
     </div>
   );
 }

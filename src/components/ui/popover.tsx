@@ -5,8 +5,10 @@ import * as PopoverPrimitive from "@radix-ui/react-popover";
 
 import { css, cx } from "@/styles/css";
 import { HTMLStyledProps } from "@/styles/types";
-import { Button } from "./button";
+import { popover } from "@/styles/recipes";
+
 import { grid } from "@/styles/patterns";
+import { Button } from "./button";
 import { Label } from "./label";
 import { Input } from "./input";
 
@@ -14,46 +16,23 @@ const Popover = PopoverPrimitive.Root;
 
 const PopoverTrigger = PopoverPrimitive.Trigger;
 
-const contentStyles = css.raw({
-  zIndex: 50,
-  width: 72,
-  rounded: "md",
-  borderWidth: "1px",
-  bgColor: "background",
-  padding: 4,
-  shadow: "md",
-  outline: "none",
-  willChange: "transform, opacity",
-  _open: {
-    animation: "enter",
-    fadeIn: 0,
-    zoomIn: 0.95,
-  },
-  _closed: {
-    animation: "exit",
-    fadeOut: 0,
-    zoomOut: 0.95,
-  },
-  "&[data-side=top]": { slideInY: "2" },
-  "&[data-side=bottom]": { slideInY: "-2" },
-  "&[data-side=left]": { slideInX: "2" },
-  "&[data-side=right]": { slideInX: "-2" },
-});
-
 const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,
   HTMLStyledProps<typeof PopoverPrimitive.Content>
->(({ css: cssProp, align = "center", sideOffset = 4, ...props }, ref) => (
-  <PopoverPrimitive.Portal>
-    <PopoverPrimitive.Content
-      ref={ref}
-      align={align}
-      sideOffset={sideOffset}
-      className={cx(css(contentStyles, cssProp), props.className)}
-      {...props}
-    />
-  </PopoverPrimitive.Portal>
-));
+>(({ css: cssProp, align = "center", sideOffset = 4, ...props }, ref) => {
+  const contentStyles = popover();
+  return (
+    <PopoverPrimitive.Portal>
+      <PopoverPrimitive.Content
+        ref={ref}
+        align={align}
+        sideOffset={sideOffset}
+        {...props}
+        className={cx(css(cssProp), contentStyles, props.className)}
+      />
+    </PopoverPrimitive.Portal>
+  );
+});
 PopoverContent.displayName = PopoverPrimitive.Content.displayName;
 
 export { Popover, PopoverTrigger, PopoverContent };

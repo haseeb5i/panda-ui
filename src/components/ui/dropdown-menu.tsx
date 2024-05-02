@@ -6,6 +6,7 @@ import {
   Check,
   ChevronRight,
   Circle,
+  // demo only
   LogOut,
   Mail,
   MessageSquare,
@@ -13,9 +14,10 @@ import {
   UserPlus,
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { css, cx } from "@/styles/css";
 import { styled } from "@/styles/jsx";
+
+import { Button } from "./button";
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 

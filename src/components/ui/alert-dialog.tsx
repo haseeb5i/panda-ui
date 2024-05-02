@@ -3,10 +3,10 @@
 import * as React from "react";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 
-import { button } from "@/styles/recipes";
 import { css, cx } from "@/styles/css";
 import { HTMLStyledProps, styled } from "@/styles/jsx";
 
+import { button } from "@/styles/recipes";
 import { Button } from "./button";
 
 const AlertDialog = AlertDialogPrimitive.Root;
@@ -130,7 +130,7 @@ const AlertDialogCancel = React.forwardRef<
     className={cx(
       button({ variant: "outline" }),
       css({ mt: { base: 2, sm: 0 } }),
-      className,
+      className
     )}
     {...props}
   />

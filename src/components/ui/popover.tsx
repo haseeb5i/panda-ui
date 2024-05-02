@@ -19,20 +19,17 @@ const PopoverTrigger = PopoverPrimitive.Trigger;
 const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,
   HTMLStyledProps<typeof PopoverPrimitive.Content>
->(({ css: cssProp, align = "center", sideOffset = 4, ...props }, ref) => {
-  const contentStyles = popover();
-  return (
-    <PopoverPrimitive.Portal>
-      <PopoverPrimitive.Content
-        ref={ref}
-        align={align}
-        sideOffset={sideOffset}
-        {...props}
-        className={cx(css(cssProp), contentStyles, props.className)}
-      />
-    </PopoverPrimitive.Portal>
-  );
-});
+>(({ css: cssProp, align = "center", sideOffset = 4, ...props }, ref) => (
+  <PopoverPrimitive.Portal>
+    <PopoverPrimitive.Content
+      ref={ref}
+      align={align}
+      sideOffset={sideOffset}
+      {...props}
+      className={cx(css(cssProp), popover(), props.className)}
+    />
+  </PopoverPrimitive.Portal>
+));
 PopoverContent.displayName = PopoverPrimitive.Content.displayName;
 
 export { Popover, PopoverTrigger, PopoverContent };

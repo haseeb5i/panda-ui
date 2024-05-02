@@ -4,9 +4,10 @@ import * as React from "react";
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 import { ChevronsUpDown } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { styled } from "@/styles/jsx";
+
 import { css } from "@/styles/css";
+import { Button } from "./button";
 
 const Collapsible = styled(CollapsiblePrimitive.Root);
 

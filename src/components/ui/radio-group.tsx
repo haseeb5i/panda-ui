@@ -6,6 +6,7 @@ import { Circle } from "lucide-react";
 
 import { cx, css } from "@/styles/css";
 import { HTMLStyledProps, styled } from "@/styles/jsx";
+
 import { flex } from "@/styles/patterns";
 import { Label } from "./label";
 
@@ -18,7 +19,7 @@ const RadioGroup = styled(RadioGroupPrimitive.Root, {
 
 const itemsStyles = css.raw({
   aspectRatio: "square",
-  size: '4',
+  size: "4",
   rounded: "full",
   borderWidth: "1px",
   borderColor: "primary",

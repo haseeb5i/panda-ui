@@ -4,6 +4,7 @@ import * as SeparatorPrimitive from "@radix-ui/react-separator";
 
 import { styled } from "@/styles/jsx";
 import { separator } from "@/styles/recipes";
+
 import { css } from "@/styles/css";
 
 const Separator = styled(SeparatorPrimitive.Root, separator, {

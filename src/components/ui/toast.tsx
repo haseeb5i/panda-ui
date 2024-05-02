@@ -4,8 +4,8 @@ import * as React from "react";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import { X } from "lucide-react";
 
-import { HTMLStyledProps, styled } from "@/styles/jsx";
 import { RecipeVariantProps, css, cva, cx } from "@/styles/css";
+import { HTMLStyledProps, styled } from "@/styles/jsx";
 
 const ToastProvider = ToastPrimitives.Provider;
 
@@ -47,7 +47,7 @@ const toastVariants = cva({
     shadow: "lg",
     transition: "all",
     pointerEvents: "auto",
-    translate: 'auto',
+    translate: "auto",
     _open: {
       animation: "enter",
       slideInY: { base: "-100%", sm: "100%" },
@@ -99,7 +99,7 @@ const Toast = React.forwardRef<
         variant === "destructive" && "destructive",
         "group",
         css(toastVariants.raw({ variant }), cssProp),
-        className,
+        className
       )}
       {...props}
     />

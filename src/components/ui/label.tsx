@@ -1,9 +1,8 @@
 "use client";
 
-import { cva } from "@/styles/css";
 import { styled } from "@/styles/jsx";
 
-const labelVariants = cva({
+const Label = styled("label", {
   base: {
     textStyle: "sm",
     fontWeight: "medium",
@@ -14,7 +13,5 @@ const labelVariants = cva({
     },
   },
 });
-
-const Label = styled("label", labelVariants);
 
 export { Label };

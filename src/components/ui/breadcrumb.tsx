@@ -2,22 +2,21 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
 
-import { cn } from "@/lib/utils";
-import { HTMLStyledProps, styled } from "@/styles/jsx";
 import { css, cx } from "@/styles/css";
+import { HTMLStyledProps, styled } from "@/styles/jsx";
 
+import { flex } from "@/styles/patterns";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./dropdown-menu";
-import { flex } from "@/styles/patterns";
 
 const Breadcrumb = styled(
   "nav",
   {},
-  { defaultProps: { "aria-label": "breadcrumb" } },
+  { defaultProps: { "aria-label": "breadcrumb" } }
 );
 Breadcrumb.displayName = "Breadcrumb";
 
@@ -56,7 +55,7 @@ const BreadcrumbLink = React.forwardRef<
       ref={ref}
       className={cx(
         css({ transition: "colors", _hover: { color: "foreground" } }),
-        className,
+        className
       )}
       {...props}
     />
@@ -78,7 +77,7 @@ const BreadcrumbPage = styled(
       "aria-disabled": true,
       "aria-current": "page",
     },
-  },
+  }
 );
 BreadcrumbPage.displayName = "BreadcrumbPage";
 
@@ -106,7 +105,7 @@ const BreadcrumbEllipsis = ({
   <span
     role="presentation"
     aria-hidden="true"
-    className={cn(css({ dflex: "center", size: "9" }, cssProp), className)}
+    className={cx(css({ dflex: "center", size: "9" }, cssProp), className)}
     {...props}
   >
     <MoreHorizontal className={css({ size: "4" })} />

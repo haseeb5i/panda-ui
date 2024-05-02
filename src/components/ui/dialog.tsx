@@ -6,10 +6,11 @@ import { X } from "lucide-react";
 
 import { css, cx } from "@/styles/css";
 import { HTMLStyledProps, styled } from "@/styles/jsx";
+
+import { grid } from "@/styles/patterns";
 import { Button } from "./button";
 import { Label } from "./label";
 import { Input } from "./input";
-import { grid } from "@/styles/patterns";
 
 const Dialog = DialogPrimitive.Root;
 

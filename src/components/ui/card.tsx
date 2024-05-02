@@ -1,5 +1,6 @@
 import { css } from "@/styles/css";
 import { styled } from "@/styles/jsx";
+
 import { Label } from "./label";
 import { Input } from "./input";
 import { Button } from "./button";
@@ -71,7 +72,7 @@ export {
 };
 
 export const CardDemo = () => (
-  <Card css={{w: '400px'}}>
+  <Card css={{ w: "400px" }}>
     <CardHeader>
       <CardTitle>Account</CardTitle>
       <CardDescription>

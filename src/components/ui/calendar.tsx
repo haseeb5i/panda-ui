@@ -4,9 +4,9 @@ import * as React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DayPicker } from "react-day-picker";
 
-import { button } from "@/styles/recipes";
 import { css, cx } from "@/styles/css";
 import { HTMLStyledProps } from "@/styles/types";
+import { button } from "@/styles/recipes";
 
 export type CalendarProps = HTMLStyledProps<typeof DayPicker>;
 
@@ -57,7 +57,7 @@ const classes = {
       p: "0",
       opacity: "0.5",
       _hover: { opacity: "100" },
-    }),
+    })
   ),
   nav_button_previous: css({ position: "absolute", left: "1" }),
   nav_button_next: css({ position: "absolute", right: "1" }),
@@ -107,7 +107,7 @@ const classes = {
       "&[aria-selected]": {
         opacity: 1,
       },
-    }),
+    })
   ),
   day_range_end: "day-range-end",
   day_selected: css({
@@ -135,7 +135,7 @@ const classes = {
         opacity: 0.3,
       },
     }),
-    "day-outside",
+    "day-outside"
   ),
   day_disabled: css({
     color: "mutedForeground",

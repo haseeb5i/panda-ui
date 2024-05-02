@@ -35,12 +35,12 @@ const triggerStyles = css.raw({
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   HTMLStyledProps<typeof AccordionPrimitive.Trigger>
->(({ children, css: cssProp, ...props }, ref) => (
+>(({ className, children, css: cssProp, ...props }, ref) => (
   <AccordionPrimitive.Header className={css({ display: "flex" })}>
     <AccordionPrimitive.Trigger
       ref={ref}
+      className={cx(css(triggerStyles, cssProp), className)}
       {...props}
-      className={cx(css(triggerStyles, cssProp), props.className)}
     >
       {children}
       <ChevronDown
@@ -72,7 +72,7 @@ const contentStyles = css({
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
   HTMLStyledProps<typeof AccordionPrimitive.Content>
->(({ css: cssProp, className, children, ...props }, ref) => (
+>(({ className, css: cssProp, children, ...props }, ref) => (
   <AccordionPrimitive.Content ref={ref} className={contentStyles} {...props}>
     <div className={cx(css({ pb: "1rem" }, cssProp), className)}>
       {children}
@@ -109,4 +109,3 @@ export function AccordionDemo() {
     </Accordion>
   );
 }
-

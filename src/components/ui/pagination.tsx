@@ -1,9 +1,9 @@
 import * as React from "react";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 
-import { type ButtonVariantProps, button } from "@/styles/recipes";
 import { cx, css } from "@/styles/css";
 import { HTMLStyledProps, styled } from "@/styles/jsx";
+import { type ButtonVariantProps, button } from "@/styles/recipes";
 
 const Pagination = styled(
   "nav",
@@ -20,7 +20,7 @@ const Pagination = styled(
       role: "navigation",
       "aria-label": "pagination",
     },
-  },
+  }
 );
 Pagination.displayName = "Pagination";
 
@@ -53,7 +53,7 @@ const PaginationLink = ({
     className={cx(
       css(cssProp),
       button({ size, variant: isActive ? "outline" : "ghost" }),
-      className,
+      className
     )}
     {...props}
   />

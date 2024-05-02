@@ -4,6 +4,7 @@ import * as React from "react";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 
 import { styled } from "@/styles/jsx";
+
 import { Button } from "./button";
 
 const TooltipProvider = TooltipPrimitive.Provider;
@@ -47,7 +48,7 @@ const TooltipContent = styled(
     defaultProps: {
       sideOffset: 4,
     },
-  },
+  }
 );
 
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider };

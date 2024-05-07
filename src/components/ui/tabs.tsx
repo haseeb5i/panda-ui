@@ -3,63 +3,18 @@
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 
 import { styled } from "@/styles/jsx";
+import { tabs } from "@/styles/recipes";
+import { createStyleContext } from "@/lib/create-style-context";
 
-const Tabs = styled(TabsPrimitive.Root);
+const { withProvider, withContext } = createStyleContext(tabs);
 
-const TabsList = styled(TabsPrimitive.List, {
-  base: {
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "2",
-    height: "10",
-    padding: "1",
-    rounded: "md",
-    bgColor: 'accent',
-    color: 'mutedForeground',
-  },
-});
+const Tabs = withProvider(styled(TabsPrimitive.Root));
 
-const TabsTrigger = styled(TabsPrimitive.Trigger, {
-  base: {
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    whiteSpace: "nowrap",
-    rounded: "sm",
-    paddingX: "3",
-    paddingY: "1.5",
-    textStyle: "sm",
-    fontWeight: "medium",
-    transition: "all",
-    cursor: "pointer",
-    _focusVisible: {
-      outline: "2px solid transparent",
-      outlineOffset: "2px",
-      boxShadow: "outline",
-    },
-    _disabled: {
-      pointerEvents: "none",
-      opacity: "0.5",
-    },
-    "&[data-state=active]": {
-      bgColor: "background",
-      color: "foreground",
-      shadow: "sm",
-    },
-  },
-});
+const TabsList = withContext(styled(TabsPrimitive.List), "list");
 
-const TabsContent = styled(TabsPrimitive.Content, {
-  base: {
-    marginTop: "2",
-    _focusVisible: {
-      outline: "2px solid transparent",
-      outlineOffset: "2px",
-      boxShadow: "outline",
-    },
-  },
-});
+const TabsTrigger = withContext(styled(TabsPrimitive.Trigger), "trigger");
+
+const TabsContent = withContext(styled(TabsPrimitive.Content), "content");
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };
 

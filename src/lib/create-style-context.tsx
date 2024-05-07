@@ -48,7 +48,7 @@ export const createStyleContext = <R extends StyleRecipe>(recipe: R) => {
       );
     });
     // @ts-ignore
-    StyledComponent.displayName = Component.displayName;
+    StyledComponent.displayName = Component.displayName ?? Component.name;
     return StyledComponent as unknown as ComponentVariants<T, R>;
   };
 
@@ -66,7 +66,7 @@ export const createStyleContext = <R extends StyleRecipe>(recipe: R) => {
       });
     });
     // @ts-ignore
-    StyledComponent.displayName = Component.displayName;
+    StyledComponent.displayName = Component.displayName ?? Component.name;
     return StyledComponent as unknown as T;
   };
 

@@ -18,7 +18,7 @@ const DialogTrigger = DialogPrimitive.Trigger;
 
 const DialogPortal = DialogPrimitive.Portal;
 
-const DialogClose = DialogPrimitive.Close;
+const DialogClose = styled(DialogPrimitive.Close);
 
 const DialogOverlay = styled(DialogPrimitive.Overlay, {
   base: {
@@ -96,8 +96,7 @@ const DialogContent = React.forwardRef<
     >
       {children}
       <DialogPrimitive.Close className={closeBtnStyles}>
-        <X className={css({ size: "4" })} />
-        <span className={css({ srOnly: true })}>Close</span>
+        <X aria-label="close" className={css({ size: "4" })} />
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>
   </DialogPortal>

@@ -1,54 +1,18 @@
-import { css } from "@/styles/css";
-import { styled } from "@/styles/jsx";
+"use client";
 
+import { withStyles } from "@/lib/with-styles";
+import { alert } from "@/styles/recipes";
+
+import { css } from "@/styles/css";
 import { Terminal } from "lucide-react";
 
-const Alert = styled("div", {
-  base: {
-    position: "relative",
-    width: "full",
-    rounded: "lg",
-    borderWidth: "1",
-    padding: "4",
-    "&>svg": {
-      position: "absolute",
-      left: "4",
-      top: "4",
-    },
-    "&>svg~*": { paddingLeft: "7" },
-    "&>svg+div": { translateY: "-3px" }, // missting translate: 'auto'
-  },
-  variants: {
-    variant: {
-      default: {
-        bgColor: "background",
-        color: "foreground",
-      },
-      destructive: {
-        color: "red.500",
-        borderColor: { base: "red.500/50", _dark: "red.500" },
-      },
-    },
-  },
-  defaultVariants: {
-    variant: "default",
-  },
-});
+const classes = alert();
 
-const AlertTitle = styled("h5", {
-  base: {
-    marginBottom: "1",
-    fontWeight: "medium",
-    lineHeight: "none",
-    letterSpacing: "tight",
-  },
-});
+const Alert = withStyles("div", classes.root);
 
-const AlertDescription = styled("p", {
-  base: {
-    textStyle: "sm",
-  },
-});
+const AlertTitle = withStyles("h5", classes.title);
+
+const AlertDescription = withStyles("h5", classes.description);
 
 export { Alert, AlertTitle, AlertDescription };
 

@@ -1,13 +1,8 @@
 import { css } from "@/styles/css";
 import { styled } from "@/styles/jsx";
+import { skeleton } from "@/styles/recipes";
 
-const Skeleton = styled("div", {
-  base: {
-    rounded: "md",
-    bgColor: "accent",
-    animation: "pulse",
-  },
-});
+const Skeleton = styled("div", skeleton);
 
 export { Skeleton };
 

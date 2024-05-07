@@ -2,20 +2,16 @@
 
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
-import { styled } from "@/styles/jsx";
+import { withStyles } from "@/lib/with-styles";
 import { avatar } from "@/styles/recipes";
-import { createStyleContext } from "@/lib/create-style-context";
 
-const { withProvider, withContext } = createStyleContext(avatar);
+const classes = avatar();
 
-const Avatar = withProvider(styled(AvatarPrimitive.Root), "root");
+const Avatar = withStyles(AvatarPrimitive.Root, classes.root);
 
-const AvatarImage = withContext(styled(AvatarPrimitive.Image), "image");
+const AvatarImage = withStyles(AvatarPrimitive.Image, classes.image);
 
-const AvatarFallback = withContext(
-  styled(AvatarPrimitive.Fallback),
-  "fallback"
-);
+const AvatarFallback = withStyles(AvatarPrimitive.Fallback, classes.fallback);
 
 export { Avatar, AvatarImage, AvatarFallback };
 

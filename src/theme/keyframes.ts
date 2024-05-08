@@ -25,14 +25,6 @@ export const keyframes = defineKeyframes({
       scale: "var(--exit-scale,1) var(--exit-scale,1)",
     },
   },
-  fadeIn: {
-    "0%": { opacity: 0 },
-    "100%": { opacity: 1 },
-  },
-  fadeOut: {
-    "0%": { opacity: 1 },
-    "100%": { opacity: 0 },
-  },
   caretBlink: {
     "0%, 70%, 100%": { opacity: 1 },
     "20%, 50%": { opacity: 0 },

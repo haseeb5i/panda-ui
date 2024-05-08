@@ -28,20 +28,17 @@ const TooltipContent = styled(
       shadow: "md",
       userSelect: "none",
       willChange: "transform, opacity",
+
+      fadeInOut: 0,
+      zoomInOut: 0.95,
       "&[data-state=delayed-open]": {
         animation: "enter",
-        fadeIn: 0,
-        zoomIn: 0.95,
         "&[data-side=top]": { slideInY: "2" },
         "&[data-side=bottom]": { slideInY: "-2" },
         "&[data-side=left]": { slideInX: "2" },
         "&[data-side=right]": { slideInX: "-2" },
       },
-      _closed: {
-        animation: "exit",
-        fadeOut: 0,
-        zoomOut: 0.95,
-      },
+      _closed: { animation: "exit" },
     },
   },
   {

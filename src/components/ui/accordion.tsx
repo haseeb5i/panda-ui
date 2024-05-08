@@ -4,10 +4,9 @@ import * as React from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDown } from "lucide-react";
 
-import { accordion } from "@/styles/recipes";
-import { withStyles } from "@/lib/with-styles";
+import { withStyles, PropsWithCss } from "@/lib/with-styles";
 import { css, cx } from "@/styles/css";
-import { HTMLStyledProps } from "@/styles/jsx";
+import { accordion } from "@/styles/recipes";
 
 const classes = accordion();
 
@@ -17,8 +16,8 @@ const AccordionItem = withStyles(AccordionPrimitive.Item, classes.item);
 
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  HTMLStyledProps<typeof AccordionPrimitive.Trigger>
->(({ className, children, css: cssProp, ...props }, ref) => (
+  PropsWithCss<typeof AccordionPrimitive.Trigger>
+>(({ className, css: cssProp, children, ...props }, ref) => (
   <AccordionPrimitive.Header className={css({ display: "flex" })}>
     <AccordionPrimitive.Trigger
       ref={ref}
@@ -34,7 +33,7 @@ AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
-  HTMLStyledProps<typeof AccordionPrimitive.Content>
+  PropsWithCss<typeof AccordionPrimitive.Content>
 >(({ className, css: cssProp, children, ...props }, ref) => (
   <AccordionPrimitive.Content ref={ref} className={classes.content} {...props}>
     <div className={cx(css({ pb: "1rem" }, cssProp), className)}>

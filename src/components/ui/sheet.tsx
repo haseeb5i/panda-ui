@@ -24,8 +24,9 @@ const SheetOverlay = styled(SheetPrimitive.Overlay, {
     position: "fixed",
     inset: 0,
     bgColor: "black/80",
-    _open: { animation: "enter", fadeIn: 0 },
-    _closed: { animation: "exit", fadeOut: 0 },
+    fadeInOut: 0,
+    _open: { animation: "enter" },
+    _closed: { animation: "exit" },
   },
 });
 

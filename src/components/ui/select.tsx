@@ -104,10 +104,10 @@ const contentStyles = css({
   bgColor: "background",
   shadow: "md",
   translate: "auto",
+  fadeInOut: 0,
+  zoomInOut: 0.95,
   _open: {
     animation: "enter",
-    fadeIn: 0,
-    zoomIn: 0.95,
     // "&[data-side=top]": { slideInY: "2" },
     // "&[data-side=bottom]": { slideInY: "-2" },
     // "&[data-side=left]": { slideInX: "2" },
@@ -120,8 +120,6 @@ const contentStyles = css({
   },
   _closed: {
     animation: "exit",
-    fadeOut: 0,
-    zoomOut: 0.95,
   },
 });
 

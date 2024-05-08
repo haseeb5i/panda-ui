@@ -3,96 +3,45 @@
 import * as React from "react";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 
+import { PropsWithCss, withStyles } from "@/lib/with-styles";
 import { css, cx } from "@/styles/css";
-import { HTMLStyledProps, styled } from "@/styles/jsx";
+import { button, dialog } from "@/styles/recipes";
+import { styled } from "@/styles/jsx";
 
-import { button } from "@/styles/recipes";
 import { Button } from "./button";
+
+const classes = dialog();
 
 const AlertDialog = AlertDialogPrimitive.Root;
 
-const AlertDialogTrigger = AlertDialogPrimitive.Trigger;
+const AlertDialogTrigger = withStyles(AlertDialogPrimitive.Trigger);
 
 const AlertDialogPortal = AlertDialogPrimitive.Portal;
 
-const AlertDialogOverlay = styled(AlertDialogPrimitive.Overlay, {
-  base: {
-    position: "fixed",
-    inset: 0,
-    bgColor: "black/80",
-    _open: { animation: "enter", fadeIn: 0 },
-    _closed: { animation: "exit", fadeOut: 0 },
-  },
-});
-
-const contentStyles = css.raw({
-  position: "fixed",
-  top: "50%",
-  left: "50%",
-  width: "90vw",
-  maxWidth: "lg",
-  display: "grid",
-  gap: 4,
-  borderWidth: "1px",
-  rounded: { sm: "lg" },
-  bgColor: "background",
-  padding: 6,
-  shadow: "lg",
-  translateX: "-50%",
-  translateY: "-50%",
-  translate: "auto",
-  _open: {
-    animation: "enter .2s",
-    fadeIn: 0,
-    zoomIn: 0.95,
-    slideInX: "-50%",
-    slideInY: "-48%",
-  },
-  _closed: {
-    animation: "exit .2s",
-    fadeOut: 0,
-    zoomOut: 0.95,
-    slideOutX: "-50%",
-    slideOutY: "-48%",
-  },
-});
+const AlertDialogOverlay = withStyles(
+  AlertDialogPrimitive.Overlay,
+  classes.overlay
+);
 
 const AlertDialogContent = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Content>,
-  HTMLStyledProps<typeof AlertDialogPrimitive.Content>
+  PropsWithCss<typeof AlertDialogPrimitive.Content>
 >(({ className, css: cssProp, ...props }, ref) => (
   <AlertDialogPortal>
     <AlertDialogOverlay />
     <AlertDialogPrimitive.Content
       ref={ref}
-      className={cx(css(contentStyles, cssProp), className)}
+      className={cx(css(cssProp), classes.content, className)}
       {...props}
     />
   </AlertDialogPortal>
 ));
 AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName;
 
-const AlertDialogHeader = styled("div", {
-  base: {
-    display: "flex",
-    flexDir: "column",
-    spaceY: 2,
-    textAlign: { base: "center", sm: "left" },
-  },
-});
+const AlertDialogHeader = withStyles("div", classes.header, { spaceY: 2 });
 AlertDialogHeader.displayName = "AlertDialogHeader";
 
-const AlertDialogFooter = styled("div", {
-  base: {
-    display: "flex",
-    flexDir: "column-reverse",
-    sm: {
-      flexDir: "row",
-      justifyContent: "flex-end",
-      spaceX: 2,
-    },
-  },
-});
+const AlertDialogFooter = withStyles("div", classes.footer);
 AlertDialogFooter.displayName = "AlertDialogFooter";
 
 const AlertDialogTitle = styled(AlertDialogPrimitive.Title, {
@@ -105,17 +54,17 @@ const AlertDialogTitle = styled(AlertDialogPrimitive.Title, {
 const AlertDialogDescription = styled(AlertDialogPrimitive.Description, {
   base: {
     textStyle: "sm",
-    color: { base: "zinc.500", _dark: "zinc.400" },
+    color: "mutedForeground",
   },
 });
 
 const AlertDialogAction = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Action>,
-  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Action>
->(({ className, ...props }, ref) => (
+  PropsWithCss<typeof AlertDialogPrimitive.Action>
+>(({ className, css: cssProp, ...props }, ref) => (
   <AlertDialogPrimitive.Action
     ref={ref}
-    className={cx(button(), className)}
+    className={cx(css(cssProp), button(), className)}
     {...props}
   />
 ));
@@ -123,13 +72,13 @@ AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName;
 
 const AlertDialogCancel = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Cancel>,
-  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Cancel>
->(({ className, ...props }, ref) => (
+  PropsWithCss<typeof AlertDialogPrimitive.Cancel>
+>(({ className, css: cssProp, ...props }, ref) => (
   <AlertDialogPrimitive.Cancel
     ref={ref}
     className={cx(
+      css({ mt: { base: 2, sm: 0 } }, cssProp),
       button({ variant: "outline" }),
-      css({ mt: { base: 2, sm: 0 } }),
       className
     )}
     {...props}

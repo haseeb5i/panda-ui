@@ -51,19 +51,19 @@ export const appPreset = definePreset({
           height: value,
         }),
       },
-      fadeIn: {
+      // usually we use the same value for enter and exit animations
+      fadeInOut: {
         values: "opacity",
-        transform: (value) => ({ "--enter-opacity": value }),
+        transform: (value) => ({
+          "--enter-opacity": value,
+          "--exit-opacity": value,
+        }),
       },
-      fadeOut: {
-        values: "opacity",
-        transform: (value) => ({ "--exit-opacity": value }),
-      },
-      zoomIn: {
-        transform: (value) => ({ "--enter-scale": value }),
-      },
-      zoomOut: {
-        transform: (value) => ({ "--exit-scale": value }),
+      zoomInOut: {
+        transform: (value) => ({
+          "--enter-scale": value,
+          "--exit-scale": value,
+        }),
       },
       slideInY: {
         values: (theme) => theme("spacing"),

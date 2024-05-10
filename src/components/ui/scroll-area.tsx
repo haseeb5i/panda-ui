@@ -3,20 +3,20 @@
 import * as React from "react";
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 
+import { PropsWithCss } from "@/lib/with-styles";
 import { cx, css } from "@/styles/css";
-import { HTMLStyledProps } from "@/styles/types";
 
 import { Separator } from "./separator";
 
 const ScrollArea = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.Root>,
-  HTMLStyledProps<typeof ScrollAreaPrimitive.Root>
+  PropsWithCss<typeof ScrollAreaPrimitive.Root>
 >(({ className, css: cssProp, children, ...props }, ref) => (
   <ScrollAreaPrimitive.Root
     ref={ref}
     className={cx(
       css({ pos: "relative", overflow: "hidden" }, cssProp),
-      className
+      className,
     )}
     {...props}
   >
@@ -75,7 +75,7 @@ ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
 export { ScrollArea, ScrollBar };
 
 const tags = Array.from({ length: 50 }).map(
-  (_, i, a) => `v1.2.0-beta.${a.length - i}`
+  (_, i, a) => `v1.2.0-beta.${a.length - i}`,
 );
 
 export function ScrollAreaDemo() {

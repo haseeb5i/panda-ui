@@ -3,13 +3,13 @@
 import * as React from "react";
 import * as SwitchPrimitives from "@radix-ui/react-switch";
 
+import { PropsWithCss } from "@/lib/with-styles";
 import { css, cx } from "@/styles/css";
-import { HTMLStyledProps } from "@/styles/types";
 import { switchRecipe } from "@/styles/recipes";
 
 const Switch = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitives.Root>,
-  HTMLStyledProps<typeof SwitchPrimitives.Root>
+  PropsWithCss<typeof SwitchPrimitives.Root>
 >(({ className, css: cssProp, ...props }, ref) => {
   const styles = switchRecipe();
   return (

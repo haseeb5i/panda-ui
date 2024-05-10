@@ -3,13 +3,13 @@
 import * as React from "react";
 import * as ProgressPrimitive from "@radix-ui/react-progress";
 
+import { PropsWithCss } from "@/lib/with-styles";
 import { css, cx } from "@/styles/css";
-import { HTMLStyledProps } from "@/styles/types";
 import { progress } from "@/styles/recipes";
 
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
-  HTMLStyledProps<typeof ProgressPrimitive.Root>
+  PropsWithCss<typeof ProgressPrimitive.Root>
 >(({ className, css: cssProp, value, ...props }, ref) => {
   const styles = progress();
   return (

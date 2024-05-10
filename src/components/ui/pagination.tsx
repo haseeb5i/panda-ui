@@ -1,51 +1,43 @@
 import * as React from "react";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 
+import { PropsWithCss, withStyles } from "@/lib/with-styles";
 import { cx, css } from "@/styles/css";
-import { HTMLStyledProps, styled } from "@/styles/jsx";
 import { type ButtonVariantProps, button } from "@/styles/recipes";
 
-const Pagination = styled(
+const Pagination = withStyles(
   "nav",
   {
-    base: {
-      display: "flex",
-      marginX: "auto",
-      width: "full",
-      justifyContent: "center",
-    },
+    display: "flex",
+    marginX: "auto",
+    width: "full",
+    justifyContent: "center",
   },
   {
-    defaultProps: {
-      role: "navigation",
-      "aria-label": "pagination",
-    },
-  }
+    role: "navigation",
+    "aria-label": "pagination",
+  },
 );
 Pagination.displayName = "Pagination";
 
-const PaginationContent = styled("ul", {
-  base: {
-    display: "flex",
-    alignItems: "center",
-    gap: "1",
-  },
+const PaginationContent = withStyles("ul", {
+  display: "flex",
+  alignItems: "center",
+  gap: "1",
 });
 PaginationContent.displayName = "PaginationContent";
 
-const PaginationItem = styled("li");
+const PaginationItem = withStyles("li");
 PaginationItem.displayName = "PaginationItem";
 
-type PaginationLinkProps = HTMLStyledProps<"a"> &
-  Pick<ButtonVariantProps, "size"> & {
-    isActive?: boolean;
-  };
+type PaginationLinkProps = PropsWithCss<"a"> &
+  Pick<ButtonVariantProps, "size"> & { isActive?: boolean };
 
 const PaginationLink = ({
   className,
+  css: cssProp,
   isActive,
   size = "icon",
-  css: cssProp,
   ...props
 }: PaginationLinkProps) => (
   <a
@@ -53,7 +45,7 @@ const PaginationLink = ({
     className={cx(
       css(cssProp),
       button({ size, variant: isActive ? "outline" : "ghost" }),
-      className
+      className,
     )}
     {...props}
   />
@@ -66,9 +58,9 @@ const PaginationPrevious = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to previous page"
+    size="default"
     css={{ gap: "1", pl: "2.5", ...cssProp }}
     {...props}
-    size="default"
   >
     <ChevronLeft className={css({ size: "4" })} />
     <span>Previous</span>
@@ -82,9 +74,9 @@ const PaginationNext = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to next page"
+    size="default"
     css={{ gap: "1", pl: "2.5", ...cssProp }}
     {...props}
-    size="default"
   >
     <span>Next</span>
     <ChevronRight className={css({ size: "4" })} />
@@ -96,14 +88,13 @@ const PaginationEllipsis = ({
   className,
   css: cssProp,
   ...props
-}: HTMLStyledProps<"span">) => (
+}: PropsWithCss<"span">) => (
   <span
     aria-hidden
     className={cx(css({ dflex: "center", size: "9" }, cssProp), className)}
     {...props}
   >
-    <MoreHorizontal className={css({ size: "4" })} />
-    <span className={css({ srOnly: true })}>More pages</span>
+    <MoreHorizontal aria-label="More pages" className={css({ size: "4" })} />
   </span>
 );
 PaginationEllipsis.displayName = "PaginationEllipsis";

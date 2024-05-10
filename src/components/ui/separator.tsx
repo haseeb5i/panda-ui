@@ -8,9 +8,7 @@ import { separator } from "@/styles/recipes";
 import { css } from "@/styles/css";
 
 const Separator = styled(SeparatorPrimitive.Root, separator, {
-  defaultProps: {
-    decorative: true,
-  },
+  defaultProps: { decorative: true },
 });
 
 export { Separator };

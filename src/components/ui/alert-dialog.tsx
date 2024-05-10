@@ -6,7 +6,6 @@ import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 import { PropsWithCss, withStyles } from "@/lib/with-styles";
 import { css, cx } from "@/styles/css";
 import { button, dialog } from "@/styles/recipes";
-import { styled } from "@/styles/jsx";
 
 import { Button } from "./button";
 
@@ -20,7 +19,7 @@ const AlertDialogPortal = AlertDialogPrimitive.Portal;
 
 const AlertDialogOverlay = withStyles(
   AlertDialogPrimitive.Overlay,
-  classes.overlay
+  classes.overlay,
 );
 
 const AlertDialogContent = React.forwardRef<
@@ -38,24 +37,20 @@ const AlertDialogContent = React.forwardRef<
 ));
 AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName;
 
-const AlertDialogHeader = withStyles("div", classes.header, { spaceY: 2 });
+const AlertDialogHeader = withStyles("div", [classes.header, { spaceY: 2 }]);
 AlertDialogHeader.displayName = "AlertDialogHeader";
 
 const AlertDialogFooter = withStyles("div", classes.footer);
 AlertDialogFooter.displayName = "AlertDialogFooter";
 
-const AlertDialogTitle = styled(AlertDialogPrimitive.Title, {
-  base: {
-    textStyle: "lg",
-    fontWeight: "semibold",
-  },
+const AlertDialogTitle = withStyles(AlertDialogPrimitive.Title, {
+  textStyle: "lg",
+  fontWeight: "semibold",
 });
 
-const AlertDialogDescription = styled(AlertDialogPrimitive.Description, {
-  base: {
-    textStyle: "sm",
-    color: "mutedForeground",
-  },
+const AlertDialogDescription = withStyles(AlertDialogPrimitive.Description, {
+  textStyle: "sm",
+  color: "mutedForeground",
 });
 
 const AlertDialogAction = React.forwardRef<
@@ -77,9 +72,9 @@ const AlertDialogCancel = React.forwardRef<
   <AlertDialogPrimitive.Cancel
     ref={ref}
     className={cx(
-      css({ mt: { base: 2, sm: 0 } }, cssProp),
+      css({ mt: { smDown: 2 } }, cssProp),
       button({ variant: "outline" }),
-      className
+      className,
     )}
     {...props}
   />

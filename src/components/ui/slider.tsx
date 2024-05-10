@@ -3,13 +3,13 @@
 import * as React from "react";
 import * as SliderPrimitive from "@radix-ui/react-slider";
 
+import { PropsWithCss } from "@/lib/with-styles";
 import { css, cx } from "@/styles/css";
-import { HTMLStyledProps } from "@/styles/types";
 import { slider } from "@/styles/recipes";
 
 const Slider = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
-  HTMLStyledProps<typeof SliderPrimitive.Root>
+  PropsWithCss<typeof SliderPrimitive.Root>
 >(({ className, css: cssProp, ...props }, ref) => {
   const styles = slider();
   return (

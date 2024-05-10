@@ -3,8 +3,8 @@
 import * as React from "react";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 
+import { PropsWithCss } from "@/lib/with-styles";
 import { css, cx } from "@/styles/css";
-import { HTMLStyledProps } from "@/styles/types";
 import { popover } from "@/styles/recipes";
 
 import { grid } from "@/styles/patterns";
@@ -18,7 +18,7 @@ const PopoverTrigger = PopoverPrimitive.Trigger;
 
 const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,
-  HTMLStyledProps<typeof PopoverPrimitive.Content>
+  PropsWithCss<typeof PopoverPrimitive.Content>
 >(({ css: cssProp, align = "center", sideOffset = 4, ...props }, ref) => (
   <PopoverPrimitive.Portal>
     <PopoverPrimitive.Content

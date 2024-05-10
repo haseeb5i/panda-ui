@@ -4,13 +4,13 @@ import * as React from "react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { Check } from "lucide-react";
 
+import { PropsWithCss } from "@/lib/with-styles";
 import { css, cx } from "@/styles/css";
-import { HTMLStyledProps } from "@/styles/types";
 import { checkbox } from "@/styles/recipes";
 
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
-  HTMLStyledProps<typeof CheckboxPrimitive.Root>
+  PropsWithCss<typeof CheckboxPrimitive.Root>
 >(({ className, css: cssProp, ...props }, ref) => {
   const styles = checkbox();
   return (

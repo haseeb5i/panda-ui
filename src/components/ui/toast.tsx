@@ -54,7 +54,7 @@ const toastVariants = cva({
     },
     _closed: {
       animation: "exit",
-      fadeOut: 0.8,
+      "--exit-opacity": 0.8,
       slideOutX: "100%",
     },
     "&[data-swipe=move]": {
@@ -99,7 +99,7 @@ const Toast = React.forwardRef<
         variant === "destructive" && "destructive",
         "group",
         css(toastVariants.raw({ variant }), cssProp),
-        className
+        className,
       )}
       {...props}
     />

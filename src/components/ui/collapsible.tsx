@@ -4,16 +4,16 @@ import * as React from "react";
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 import { ChevronsUpDown } from "lucide-react";
 
-import { styled } from "@/styles/jsx";
+import { withStyles } from "@/lib/with-styles";
 
 import { css } from "@/styles/css";
 import { Button } from "./button";
 
-const Collapsible = styled(CollapsiblePrimitive.Root);
+const Collapsible = withStyles(CollapsiblePrimitive.Root);
 
 const CollapsibleTrigger = CollapsiblePrimitive.CollapsibleTrigger;
 
-const CollapsibleContent = styled(CollapsiblePrimitive.CollapsibleContent);
+const CollapsibleContent = withStyles(CollapsiblePrimitive.CollapsibleContent);
 
 export { Collapsible, CollapsibleTrigger, CollapsibleContent };
 

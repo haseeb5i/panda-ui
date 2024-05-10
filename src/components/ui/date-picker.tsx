@@ -17,6 +17,7 @@ export function DatePickerDemo() {
       <PopoverTrigger asChild>
         <Button
           variant={"outline"}
+          // use array syntax of newer version
           css={{
             w: "280px",
             justifyContent: "start",

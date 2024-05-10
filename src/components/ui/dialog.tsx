@@ -7,7 +7,6 @@ import { X } from "lucide-react";
 import { PropsWithCss, withStyles } from "@/lib/with-styles";
 import { css, cx } from "@/styles/css";
 import { dialog } from "@/styles/recipes";
-import { styled } from "@/styles/jsx";
 
 import { grid } from "@/styles/patterns";
 import { Button } from "./button";
@@ -47,25 +46,21 @@ const DialogContent = React.forwardRef<
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
 const DialogHeader = withStyles("div", classes.header);
-DialogHeader.displayName = "DialogHeader";
+// DialogHeader.displayName = "DialogHeader";
 
 const DialogFooter = withStyles("div", classes.footer);
-DialogFooter.displayName = "DialogFooter";
+// DialogFooter.displayName = "DialogFooter";
 
-const DialogTitle = styled(DialogPrimitive.Title, {
-  base: {
-    fontSize: "lg",
-    fontWeight: "semibold",
-    lineHeight: "none",
-    letterSpacing: "tight",
-  },
+const DialogTitle = withStyles(DialogPrimitive.Title, {
+  fontSize: "lg",
+  fontWeight: "semibold",
+  lineHeight: "none",
+  letterSpacing: "tight",
 });
 
-const DialogDescription = styled(DialogPrimitive.Description, {
-  base: {
-    textStyle: "sm",
-    color: "mutedForeground",
-  },
+const DialogDescription = withStyles(DialogPrimitive.Description, {
+  textStyle: "sm",
+  color: "mutedForeground",
 });
 
 export {

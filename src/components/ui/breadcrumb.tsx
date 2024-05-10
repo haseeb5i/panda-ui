@@ -2,8 +2,8 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
 
+import { PropsWithCss, withStyles } from "@/lib/with-styles";
 import { css, cx } from "@/styles/css";
-import { HTMLStyledProps, styled } from "@/styles/jsx";
 
 import { flex } from "@/styles/patterns";
 import {
@@ -13,49 +13,39 @@ import {
   DropdownMenuTrigger,
 } from "./dropdown-menu";
 
-const Breadcrumb = styled(
-  "nav",
-  {},
-  { defaultProps: { "aria-label": "breadcrumb" } }
-);
+const Breadcrumb = withStyles("nav", {}, { "aria-label": "breadcrumb" });
 Breadcrumb.displayName = "Breadcrumb";
 
-const BreadcrumbList = styled("ol", {
-  base: {
-    display: "flex",
-    flexWrap: "wrap",
-    alignItems: "center",
-    gap: { base: "1.5", sm: "2.5" },
-    wordBreak: "break-word",
-    textStyle: "sm",
-    color: "mutedForeground",
-  },
+const BreadcrumbList = withStyles("ol", {
+  display: "flex",
+  flexWrap: "wrap",
+  alignItems: "center",
+  gap: { base: "1.5", sm: "2.5" },
+  wordBreak: "break-word",
+  textStyle: "sm",
+  color: "mutedForeground",
 });
 BreadcrumbList.displayName = "BreadcrumbList";
 
-const BreadcrumbItem = styled("li", {
-  base: {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: "1.5",
-  },
+const BreadcrumbItem = withStyles("li", {
+  display: "inline-flex",
+  alignItems: "center",
+  gap: "1.5",
 });
 BreadcrumbItem.displayName = "BreadcrumbItem";
 
 const BreadcrumbLink = React.forwardRef<
   HTMLAnchorElement,
-  React.ComponentPropsWithoutRef<"a"> & {
-    asChild?: boolean;
-  }
->(({ asChild, className, ...props }, ref) => {
+  PropsWithCss<"a"> & { asChild?: boolean }
+>(({ asChild, className, css: cssProp, ...props }, ref) => {
   const Comp = asChild ? Slot : "a";
 
   return (
     <Comp
       ref={ref}
       className={cx(
-        css({ transition: "colors", _hover: { color: "foreground" } }),
-        className
+        css({ transition: "colors", _hover: { color: "foreground" } }, cssProp),
+        className,
       )}
       {...props}
     />
@@ -63,33 +53,30 @@ const BreadcrumbLink = React.forwardRef<
 });
 BreadcrumbLink.displayName = "BreadcrumbLink";
 
-const BreadcrumbPage = styled(
+const BreadcrumbPage = withStyles(
   "span",
   {
-    base: {
-      fontWeight: "normal",
-      color: "foreground",
-    },
+    fontWeight: "normal",
+    color: "foreground",
   },
   {
-    defaultProps: {
-      role: "link",
-      "aria-disabled": true,
-      "aria-current": "page",
-    },
-  }
+    role: "link",
+    "aria-disabled": true,
+    "aria-current": "page",
+  },
 );
 BreadcrumbPage.displayName = "BreadcrumbPage";
 
 const BreadcrumbSeparator = ({
   children,
   className,
+  css: cssProp,
   ...props
-}: React.ComponentProps<"li">) => (
+}: PropsWithCss<"li">) => (
   <li
     role="presentation"
     aria-hidden="true"
-    className={cx(className)}
+    className={cx(css(cssProp), className)}
     {...props}
   >
     {children ?? <ChevronRight className={css({ size: "3.5" })} />}
@@ -101,15 +88,14 @@ const BreadcrumbEllipsis = ({
   className,
   css: cssProp,
   ...props
-}: HTMLStyledProps<"span">) => (
+}: PropsWithCss<"span">) => (
   <span
     role="presentation"
     aria-hidden="true"
     className={cx(css({ dflex: "center", size: "9" }, cssProp), className)}
     {...props}
   >
-    <MoreHorizontal className={css({ size: "4" })} />
-    <span className={css({ srOnly: true })}>More</span>
+    <MoreHorizontal aria-label="More" className={css({ size: "4" })} />
   </span>
 );
 BreadcrumbEllipsis.displayName = "BreadcrumbElipssis";

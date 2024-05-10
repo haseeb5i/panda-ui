@@ -4,17 +4,15 @@ import * as React from "react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { Circle } from "lucide-react";
 
+import { PropsWithCss, withStyles } from "@/lib/with-styles";
 import { cx, css } from "@/styles/css";
-import { HTMLStyledProps, styled } from "@/styles/jsx";
 
 import { flex } from "@/styles/patterns";
 import { Label } from "./label";
 
-const RadioGroup = styled(RadioGroupPrimitive.Root, {
-  base: {
-    display: "grid",
-    gap: "2",
-  },
+const RadioGroup = withStyles(RadioGroupPrimitive.Root, {
+  display: "grid",
+  gap: "2",
 });
 
 const itemsStyles = css.raw({
@@ -38,7 +36,7 @@ const itemsStyles = css.raw({
 
 const RadioGroupItem = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Item>,
-  HTMLStyledProps<typeof RadioGroupPrimitive.Item>
+  PropsWithCss<typeof RadioGroupPrimitive.Item>
 >(({ className, css: cssProp, ...props }, ref) => {
   return (
     <RadioGroupPrimitive.Item

@@ -1,64 +1,52 @@
+import { withStyles } from "@/lib/with-styles";
 import { css } from "@/styles/css";
-import { styled } from "@/styles/jsx";
 
 import { Label } from "./label";
 import { Input } from "./input";
 import { Button } from "./button";
 
-const Card = styled("div", {
-  base: {
-    rounded: "lg",
-    borderWidth: "1px",
-    bgColor: "background",
-    color: "foreground",
-    shadow: "sm",
-  },
+const Card = withStyles("div", {
+  rounded: "lg",
+  borderWidth: "1px",
+  bgColor: "background",
+  color: "foreground",
+  shadow: "sm",
 });
 Card.displayName = "Card";
 
-const CardHeader = styled("div", {
-  base: {
-    display: "flex",
-    flexDir: "column",
-    spaceY: "1.5",
-    padding: "6",
-  },
+const CardHeader = withStyles("div", {
+  display: "flex",
+  flexDir: "column",
+  spaceY: "1.5",
+  padding: "6",
 });
 CardHeader.displayName = "CardHeader";
 
-const CardTitle = styled("h3", {
-  base: {
-    fontSize: "2xl",
-    fontWeight: "semibold",
-    lineHeight: "none",
-    letterSpacing: "tight",
-  },
+const CardTitle = withStyles("h3", {
+  fontSize: "2xl",
+  fontWeight: "semibold",
+  lineHeight: "none",
+  letterSpacing: "tight",
 });
 CardTitle.displayName = "CardTitle";
 
-const CardDescription = styled("p", {
-  base: {
-    textStyle: "sm",
-    color: "mutedForeground",
-  },
+const CardDescription = withStyles("p", {
+  textStyle: "sm",
+  color: "mutedForeground",
 });
 CardDescription.displayName = "CardDescription";
 
-const CardContent = styled("div", {
-  base: {
-    padding: "6",
-    paddingTop: "0",
-  },
+const CardContent = withStyles("div", {
+  padding: "6",
+  paddingTop: "0",
 });
 CardContent.displayName = "CardContent";
 
-const CardFooter = styled("div", {
-  base: {
-    display: "flex",
-    alignItems: "center",
-    padding: "6",
-    paddingTop: "0",
-  },
+const CardFooter = withStyles("div", {
+  display: "flex",
+  alignItems: "center",
+  padding: "6",
+  paddingTop: "0",
 });
 CardFooter.displayName = "CardFooter";
 

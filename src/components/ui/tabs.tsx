@@ -2,19 +2,18 @@
 
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 
-import { styled } from "@/styles/jsx";
+import { withStyles } from "@/lib/with-styles";
 import { tabs } from "@/styles/recipes";
-import { createStyleContext } from "@/lib/create-style-context";
 
-const { withProvider, withContext } = createStyleContext(tabs);
+const classes = tabs();
 
-const Tabs = withProvider(styled(TabsPrimitive.Root));
+const Tabs = withStyles(TabsPrimitive.Root);
 
-const TabsList = withContext(styled(TabsPrimitive.List), "list");
+const TabsList = withStyles(TabsPrimitive.List, classes.list);
 
-const TabsTrigger = withContext(styled(TabsPrimitive.Trigger), "trigger");
+const TabsTrigger = withStyles(TabsPrimitive.Trigger, classes.trigger);
 
-const TabsContent = withContext(styled(TabsPrimitive.Content), "content");
+const TabsContent = withStyles(TabsPrimitive.Content, classes.content);
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };
 

@@ -35,6 +35,7 @@ import { DatePickerDemo } from "@/components/ui/date-picker";
 import { TableDemo } from "@/components/ui/table";
 import { SheetDemo } from "@/components/ui/sheet";
 import { ToastDemo } from "@/components/ui/toaster";
+import { Heading } from "@/components/ui/heading";
 
 export default function Home() {
   return (
@@ -179,9 +180,7 @@ function DemoBox({
 }) {
   return (
     <div className={css({ maxW: "900px", mx: "auto" })}>
-      <h3 className={css({ fontSize: "2xl", fontWeight: "600", pl: "10" })}>
-        {title}
-      </h3>
+      <Heading>{title}</Heading>
       <div
         className={flex({
           justify: "center",

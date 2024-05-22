@@ -1,47 +1,26 @@
 import * as React from "react";
 
-import type { HTMLStyledProps, SystemStyleObject } from "@/styles/types";
+import type { SystemStyleObject } from "@/styles/types";
+import { css, cx } from "@/styles/css";
 
-type PolymorphicRef<C extends React.ElementType> =
-  React.ComponentPropsWithRef<C>["ref"];
+// if you want to support ref forwarding, follow this guide:
+// https://blog.logrocket.com/build-strongly-typed-polymorphic-components-react-typescript/
 
-type AsProp<C extends React.ElementType> = { as?: C };
+type TextTags = "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "li";
 
-type PropsToOmit<C extends React.ElementType, P> = keyof (AsProp<C> & P);
+type TextElement = React.ElementType<any, TextTags>;
 
-type PolymorphicComponentProp<
-  C extends React.ElementType,
-  Props = {},
-> = React.PropsWithChildren<Props & AsProp<C>> &
-  Omit<React.ComponentPropsWithoutRef<C>, PropsToOmit<C, Props>>;
+export type TextProps<C extends TextElement> =
+  React.ComponentPropsWithoutRef<C> & {
+    as?: C;
+    css?: SystemStyleObject;
+  };
 
-type PolymorphicComponentPropWithRef<
-  C extends React.ElementType,
-  Props = {},
-> = PolymorphicComponentProp<C, Props> & { ref?: PolymorphicRef<C> };
+export const Text = <C extends TextElement = "span">(props: TextProps<C>) => {
+  const { as, css: cssProp, fontWeight, textStyle, ...textProps } = props;
+  const Component = as || "span";
 
-export type TextProps<C extends React.ElementType> =
-  PolymorphicComponentPropWithRef<
-    C,
-    HTMLStyledProps<C> & {
-      size?: SystemStyleObject["textStyle"];
-      weight?: SystemStyleObject["fontWeight"];
-    }
-  >;
-
-type PolymorphicComponent = <C extends React.ElementType = "p">(
-  props: TextProps<C>,
-) => React.ReactNode | null;
-
-export const Text = React.forwardRef(
-  <C extends React.ElementType = "p">(
-    props: TextProps<C>,
-    ref?: PolymorphicRef<C>,
-  ) => {
-    const { as, ...textProps } = props;
-    const Component = as || "p";
-
-    return <Component ref={ref} {...textProps} />;
-  },
-) as PolymorphicComponent & { displayName?: string };
-Text.displayName = "Text";
+  return (
+    <Component {...textProps} className={cx(css(cssProp), props.className)} />
+  );
+};
